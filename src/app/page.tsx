@@ -745,33 +745,8 @@ export default function Home() {
                   </div>
                 ) : (
                   <form onSubmit={handleSuggestSubmit} className="suggest-form">
-                    <div className="suggest-form-row">
-                      <div className="suggest-form-group">
-                        <label className="suggest-form-label">{language === 'vi' ? 'Điểm đi' : 'Pickup'}</label>
-                        <input 
-                          type="text" 
-                          placeholder={language === 'vi' ? 'Ví dụ: Hội An' : 'e.g. Hoi An'} 
-                          value={suggestPickup}
-                          onChange={(e) => setSuggestPickup(e.target.value)}
-                          required
-                          className="suggest-input"
-                        />
-                      </div>
-                      <div className="suggest-form-group">
-                        <label className="suggest-form-label">{language === 'vi' ? 'Điểm đến' : 'Dropoff'}</label>
-                        <input 
-                          type="text" 
-                          placeholder={language === 'vi' ? 'Ví dụ: Chu Lai' : 'e.g. Chu Lai'} 
-                          value={suggestDropoff}
-                          onChange={(e) => setSuggestDropoff(e.target.value)}
-                          required
-                          className="suggest-input"
-                        />
-                      </div>
-                    </div>
-                    
                     <div className="suggest-form-group">
-                      <label className="suggest-form-label">{language === 'vi' ? 'Số điện thoại' : 'Phone Number'}</label>
+                      <label className="suggest-form-label">{t('suggest.modal.phone')}</label>
                       <input 
                         type="tel" 
                         placeholder={language === 'vi' ? 'Nhập số điện thoại của bạn' : 'Enter your phone number'} 
@@ -783,7 +758,7 @@ export default function Home() {
                     </div>
                     
                     <div className="suggest-form-group">
-                      <label className="suggest-form-label">{language === 'vi' ? 'Ghi chú thêm' : 'Additional Notes'}</label>
+                      <label className="suggest-form-label">{t('suggest.modal.route')}</label>
                       <textarea 
                         placeholder={language === 'vi' ? 'Thời gian mong muốn, số người...' : 'Desired time, number of people...'} 
                         value={suggestNotes}
@@ -794,7 +769,7 @@ export default function Home() {
                     </div>
                     
                     <button type="submit" className="btn-primary suggest-submit-btn">
-                      {language === 'vi' ? 'Gửi đề xuất ngay' : 'Submit Proposal'}
+                      {t('suggest.modal.submit')}
                     </button>
                   </form>
                 )}
@@ -822,14 +797,14 @@ export default function Home() {
             </button>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '24px', alignItems: 'flex-start' }}>
-              <span className="suggest-badge" style={{ marginBottom: '8px' }}>
-                {language === 'vi' ? 'Đối tác' : 'Partner'}
+              <span className="suggest-badge" style={{ marginBottom: '8px', textTransform: 'uppercase' }}>
+                {t('driver.modal.badge')}
               </span>
               <h3 style={{ fontSize: '28px', fontWeight: 800, margin: 0, textAlign: 'left', color: '#0d0d0d', letterSpacing: '-0.5px' }}>
-                {language === 'vi' ? 'Trở thành đối tác Omigo' : 'Become an Omigo Partner'}
+                {t('driver.modal.title')}
               </h3>
               <p style={{ fontSize: '16px', color: '#666', margin: 0, textAlign: 'left', lineHeight: '1.5' }}>
-                {language === 'vi' ? 'Gia nhập cộng đồng tài xế Omigo và tối ưu thu nhập của bạn.' : 'Join the Omigo driver community and maximize your income.'}
+                {t('driver.modal.subtitle')}
               </p>
             </div>
 
@@ -847,7 +822,7 @@ export default function Home() {
               <form onSubmit={handleDriverSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
                   <div style={styles.formField}>
-                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Họ tên' : 'Full Name'}</label>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{t('driver.modal.name')}</label>
                     <input 
                       type="text" 
                       placeholder="Nguyễn Văn A"
@@ -859,7 +834,7 @@ export default function Home() {
                   </div>
 
                   <div style={styles.formField}>
-                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'SĐT' : 'Phone'}</label>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{t('driver.modal.phone')}</label>
                     <input 
                       type="tel" 
                       placeholder="0905.XXX.XXX"
@@ -871,7 +846,7 @@ export default function Home() {
                   </div>
 
                   <div style={styles.formField}>
-                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Loại xe' : 'Vehicle'}</label>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{t('driver.modal.vehicle')}</label>
                     <input 
                       type="text" 
                       placeholder="Toyota Vios..."
@@ -883,7 +858,7 @@ export default function Home() {
                   </div>
 
                   <div style={styles.formField}>
-                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Khu vực' : 'Area'}</label>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{t('driver.modal.area')}</label>
                     <input 
                       type="text" 
                       placeholder="Tam Kỳ, Hội An..."
@@ -896,7 +871,7 @@ export default function Home() {
                 </div>
 
                 <div style={styles.formField}>
-                  <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Kinh nghiệm' : 'Experience'}</label>
+                  <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{t('driver.modal.experience')}</label>
                   <textarea 
                     placeholder="..."
                     value={driverExperience}
@@ -907,7 +882,7 @@ export default function Home() {
                 </div>
 
                 <button type="submit" className="suggest-submit-btn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                  {language === 'vi' ? 'Gửi hồ sơ' : 'Submit Profile'}
+                  {t('driver.modal.submit')}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
