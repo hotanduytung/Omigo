@@ -642,8 +642,9 @@ p {
   }
   
   .form-row.two-cols {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    gap: 6px;
+    align-items: flex-end;
   }
 
   .form-row.three-cols {
@@ -673,16 +674,17 @@ p {
   }
 
   .swap-btn-container-inline {
-    align-self: center;
-    padding-bottom: 0;
-    margin: -4px 0;
+    align-self: flex-end;
+    padding-bottom: 2px;
   }
 
   .swap-btn-inline {
-    transform: rotate(90deg);
+    transform: none;
+    width: 32px;
+    height: 32px;
   }
   .swap-btn-inline:hover {
-    transform: rotate(270deg);
+    transform: rotate(180deg);
   }
 }
 
