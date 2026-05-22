@@ -263,7 +263,7 @@ export default function Home() {
           
           {/* Left Column: Heading & CTAs */}
           <div className="hero-left-flex" style={styles.heroLeft}>
-            <span style={styles.badge}>MIGO.VN</span>
+            <span style={styles.badge}>OMIGO.VN</span>
             <h1 style={styles.heroTitle}>{t('hero.title')}</h1>
             <p style={{ ...styles.heroSubtitle, marginBottom: '24px' }}>
               {language === 'vi' 
@@ -732,7 +732,7 @@ export default function Home() {
                     </svg>
                     <p style={{ color: '#12b77a', fontWeight: 600, textAlign: 'center', fontFamily: 'var(--font-inter), sans-serif' }}>
                       {language === 'vi'
-                        ? 'Đề xuất thành công! Migo chân thành cảm ơn đóng góp của bạn.'
+                        ? 'Đề xuất thành công! Omigo chân thành cảm ơn đóng góp của bạn.'
                         : 'Proposal submitted successfully! Thank you for your contribution.'}
                     </p>
                   </div>
@@ -819,10 +819,10 @@ export default function Home() {
                 {language === 'vi' ? 'Đối tác' : 'Partner'}
               </span>
               <h3 style={{ fontSize: '28px', fontWeight: 800, margin: 0, textAlign: 'left', color: '#0d0d0d', letterSpacing: '-0.5px' }}>
-                {language === 'vi' ? 'Trở thành đối tác Migo' : 'Become a Migo Partner'}
+                {language === 'vi' ? 'Trở thành đối tác Omigo' : 'Become an Omigo Partner'}
               </h3>
               <p style={{ fontSize: '16px', color: '#666', margin: 0, textAlign: 'left', lineHeight: '1.5' }}>
-                {language === 'vi' ? 'Gia nhập cộng đồng tài xế Migo và tối ưu thu nhập của bạn.' : 'Join the Migo driver community and maximize your income.'}
+                {language === 'vi' ? 'Gia nhập cộng đồng tài xế Omigo và tối ưu thu nhập của bạn.' : 'Join the Omigo driver community and maximize your income.'}
               </p>
             </div>
 

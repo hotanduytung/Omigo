@@ -186,6 +186,9 @@ p {
     gap: 40px !important;
     padding: 0 16px !important;
   }
+  .hero-right-flex {
+    order: -1; /* Hiển thị form đặt xe đầu tiên trên mobile */
+  }
   .hero-left-flex, .hero-right-flex {
     max-width: 100% !important;
     width: 100% !important;
@@ -531,29 +534,21 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 24px;
-  padding: 16px 24px;
+  padding: 16px 8px;
   margin-top: 12px;
   margin-bottom: 32px;
   width: 100%;
   max-width: 580px;
-  box-shadow: 
-    0 12px 40px -12px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.06);
 }
 
 .promo-pricing-left-banner:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(24, 226, 153, 0.25);
-  box-shadow: 
-    0 20px 48px -16px rgba(24, 226, 153, 0.12),
-    inset 0 1px 1px rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px -12px rgba(24, 226, 153, 0.15);
+  border-color: rgba(24, 226, 153, 0.2);
 }
 
 .promo-left-card {
@@ -563,25 +558,24 @@ p {
   justify-content: center;
   text-align: center;
   flex: 1;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 8px;
 }
 
 .promo-left-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 .promo-left-label {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  color: #8e8e93;
+  color: #999999;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
 }
 
 .promo-left-prices {
@@ -592,27 +586,27 @@ p {
 
 .promo-left-new {
   font-family: var(--font-sans);
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 800;
-  color: var(--color-primary-dark); /* Attractive brand green */
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--color-primary);
 }
 
 .promo-left-card:hover .promo-left-new {
-  transform: scale(1.08);
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
 
 .promo-left-old {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 13px;
   text-decoration: line-through;
-  color: #a1a1aa;
+  color: #bbbbbb;
 }
 
 .promo-left-divider {
   width: 1px;
-  height: 28px;
-  background-color: rgba(0, 0, 0, 0.06);
+  height: 40px;
+  background-color: #eeeeee;
   margin: 0 4px;
 }
 
@@ -818,12 +812,15 @@ p {
   height: 48px;
   justify-content: center;
   font-weight: 700;
-  background-color: #009966 !important;
-  color: #ffffff !important;
+  background-color: var(--color-primary) !important;
+  color: #0d0d0d !important;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
 }
 
 .suggest-submit-btn:hover {
-  background-color: #008055 !important;
+  background-color: #14c886 !important;
 }
 
 @media (max-width: 991px) {
