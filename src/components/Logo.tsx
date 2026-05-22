@@ -23,7 +23,7 @@ export default function Logo({ light = false }: { light?: boolean }) {
           transform="rotate(-35 50 50)" 
         />
       </svg>
-      <span style={{ color: light ? '#ffffff' : '#0d0d0d' }}>migo</span>
+      <span style={{ color: light ? '#ffffff' : '#0d0d0d' }}>Omigo</span>
     </div>
   );
 }

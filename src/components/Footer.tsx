@@ -17,47 +17,7 @@ export default function Footer() {
               ? 'Dịch vụ vận chuyển hành khách chuyên nghiệp, uy tín hàng đầu khu vực Đà Nẵng - Quảng Nam. Chúng tôi cam kết mang lại trải nghiệm di chuyển an toàn và tiết kiệm nhất.' 
               : 'Professional, top reputable passenger transport service in Da Nang - Quang Nam area. We are committed to bringing the safest and most economical travel experience.'}
           </p>
-        </div>
-        
-        <div style={styles.colLinks}>
-          <h4 style={styles.colTitle}>{language === 'vi' ? 'LIÊN KẾT' : 'LINKS'}</h4>
-          <ul style={styles.linkList}>
-            <li><a href="#" style={styles.link}>{language === 'vi' ? 'Trang chủ' : 'Home'}</a></li>
-            <li><a href="#services" style={styles.link}>{language === 'vi' ? 'Bảng giá' : 'Pricing'}</a></li>
-            <li><a href="#services" style={styles.link}>{language === 'vi' ? 'Ưu điểm' : 'Advantages'}</a></li>
-            <li><a href="#routes" style={styles.link}>{language === 'vi' ? 'Đề xuất' : 'Suggest Route'}</a></li>
-          </ul>
-        </div>
-
-        <div style={styles.colContact}>
-          <h4 style={styles.colTitle}>{language === 'vi' ? 'LIÊN HỆ' : 'CONTACT'}</h4>
-          <ul style={styles.contactList}>
-            <li style={styles.contactItem}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18E299" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span>123 Nguyễn Văn Linh, Đà Nẵng</span>
-            </li>
-            <li style={styles.contactItem}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18E299" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              </svg>
-              <span>0961099069</span>
-            </li>
-            <li style={styles.contactItem}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18E299" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <span>{language === 'vi' ? 'Phục vụ 24/7' : '24/7 Service'}</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div style={styles.colSocial}>
-          <h4 style={styles.colTitle}>{t('footer.connect')}</h4>
-          <div style={styles.socials}>
+          <div style={{ ...styles.socials, marginTop: '8px' }}>
             <a href="https://www.facebook.com/migo.vn/" target="_blank" rel="noopener noreferrer" style={styles.socialLink} title="Facebook">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
@@ -77,6 +37,41 @@ export default function Footer() {
               </svg>
             </a>
           </div>
+        </div>
+        
+        <div style={styles.colLinks}>
+          <h4 style={styles.colTitle}>{language === 'vi' ? 'LIÊN KẾT' : 'LINKS'}</h4>
+          <ul style={styles.linkList}>
+            <li><a href="#" style={styles.link}>{language === 'vi' ? 'Trang chủ' : 'Home'}</a></li>
+            <li><a href="#services" style={styles.link}>{language === 'vi' ? 'Dịch vụ' : 'Services'}</a></li>
+            <li><a href="#routes" style={styles.link}>{language === 'vi' ? 'Đề xuất' : 'Suggest Route'}</a></li>
+          </ul>
+        </div>
+
+        <div style={styles.colContact}>
+          <h4 style={styles.colTitle}>{language === 'vi' ? 'LIÊN HỆ' : 'CONTACT'}</h4>
+          <ul style={styles.contactList}>
+            <li style={styles.contactItem}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18E299" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>10 Phan Sĩ Thực, Cẩm Lệ, Đà Nẵng</span>
+            </li>
+            <li style={styles.contactItem}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18E299" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>0961099069</span>
+            </li>
+            <li style={styles.contactItem}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#18E299" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>{language === 'vi' ? 'Phục vụ 24/7' : '24/7 Service'}</span>
+            </li>
+          </ul>
         </div>
       </div>
       <div style={styles.bottomBar}>
