@@ -111,10 +111,16 @@ export default function Home() {
   // Dynamic placeholders helper
   const getPickupPlaceholder = () => {
     if (route === 'tam-ky-da-nang') {
+      if (serviceType === 'gui-hang') {
+        return language === 'vi' ? 'Gửi từ Tam Kỳ' : 'Send from Tam Ky';
+      }
       return language === 'vi' 
         ? 'Đón tại Tam Kỳ' 
         : 'Pickup in Tam Ky';
     } else {
+      if (serviceType === 'gui-hang') {
+        return language === 'vi' ? 'Gửi từ Đà Nẵng' : 'Send from Da Nang';
+      }
       return language === 'vi' 
         ? 'Đón tại Đà Nẵng' 
         : 'Pickup in Da Nang';
@@ -123,10 +129,16 @@ export default function Home() {
 
   const getDropoffPlaceholder = () => {
     if (route === 'tam-ky-da-nang') {
+      if (serviceType === 'gui-hang') {
+        return language === 'vi' ? 'Giao tại Đà Nẵng' : 'Deliver to Da Nang';
+      }
       return language === 'vi' 
         ? 'Trả tại Đà Nẵng' 
         : 'Dropoff in Da Nang';
     } else {
+      if (serviceType === 'gui-hang') {
+        return language === 'vi' ? 'Giao tại Tam Kỳ' : 'Deliver to Tam Ky';
+      }
       return language === 'vi' 
         ? 'Trả tại Tam Kỳ' 
         : 'Dropoff in Tam Ky';
@@ -380,10 +392,11 @@ export default function Home() {
                   </select>
                 </div>
 
-                {/* Row 2: Pickup & Dropoff Address (2 columns) */}
                 <div className="form-row two-cols">
                   <div className="form-group">
-                    <label className="field-label-compact">{language === 'vi' ? 'Địa chỉ đi' : 'Pickup Address'}</label>
+                    <label className="field-label-compact">
+                      {serviceType === 'gui-hang' ? t('form.pickup.delivery') : (language === 'vi' ? 'Địa chỉ đi' : 'Pickup Address')}
+                    </label>
                     <input 
                       type="text" 
                       placeholder={getPickupPlaceholder()} 
@@ -404,7 +417,9 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label className="field-label-compact">{language === 'vi' ? 'Địa chỉ đến' : 'Dropoff Address'}</label>
+                    <label className="field-label-compact">
+                      {serviceType === 'gui-hang' ? t('form.dropoff.delivery') : (language === 'vi' ? 'Địa chỉ đến' : 'Dropoff Address')}
+                    </label>
                     <input 
                       type="text" 
                       placeholder={getDropoffPlaceholder()} 
@@ -419,7 +434,9 @@ export default function Home() {
                 {/* Row 3: Date, Time, and Quantity (3 columns or 2 columns if Gửi hàng) */}
                 <div className={`form-row ${serviceType === 'gui-hang' ? 'two-cols' : 'three-cols'}`}>
                   <div className="form-group form-group-date">
-                    <label className="field-label-compact">{t('form.date')}</label>
+                    <label className="field-label-compact">
+                      {serviceType === 'gui-hang' ? t('form.date.delivery') : t('form.date')}
+                    </label>
                     <select 
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
@@ -439,7 +456,9 @@ export default function Home() {
                   </div>
 
                   <div className="form-group form-group-time">
-                    <label className="field-label-compact">{t('form.time')}</label>
+                    <label className="field-label-compact">
+                      {serviceType === 'gui-hang' ? t('form.time.delivery') : t('form.time')}
+                    </label>
                     <select 
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
@@ -902,11 +921,15 @@ export default function Home() {
                     </span>
                   </div>
                   <div style={styles.confirmRow}>
-                    <span style={styles.confirmLabel}>{t('confirm.modal.pickup')}</span>
+                    <span style={styles.confirmLabel}>
+                      {serviceType === 'gui-hang' ? t('confirm.modal.pickup.delivery') : t('confirm.modal.pickup')}
+                    </span>
                     <span style={styles.confirmValue}>{pickup}</span>
                   </div>
                   <div style={styles.confirmRow}>
-                    <span style={styles.confirmLabel}>{t('confirm.modal.dropoff')}</span>
+                    <span style={styles.confirmLabel}>
+                      {serviceType === 'gui-hang' ? t('confirm.modal.dropoff.delivery') : t('confirm.modal.dropoff')}
+                    </span>
                     <span style={styles.confirmValue}>{dropoff}</span>
                   </div>
                   <div style={styles.confirmRow}>

@@ -75,6 +75,12 @@ const translations: Record<Language, Translations> = {
     'confirm.modal.success': 'Đặt chuyến thành công! Migo sẽ liên hệ lại với bạn sớm nhất.',
     'confirm.modal.seat': 'ghế',
     'confirm.modal.vehicle': 'xe',
+    'form.pickup.delivery': 'Địa chỉ gửi',
+    'form.dropoff.delivery': 'Địa chỉ nhận',
+    'form.date.delivery': 'Ngày gửi',
+    'form.time.delivery': 'Giờ gửi',
+    'confirm.modal.pickup.delivery': 'Địa chỉ gửi',
+    'confirm.modal.dropoff.delivery': 'Địa chỉ nhận',
   },
   en: {
     'nav.features': 'Features',
@@ -142,6 +148,12 @@ const translations: Record<Language, Translations> = {
     'confirm.modal.success': 'Booking successful! Migo will contact you as soon as possible.',
     'confirm.modal.seat': 'seat(s)',
     'confirm.modal.vehicle': 'vehicle(s)',
+    'form.pickup.delivery': 'Sender Address',
+    'form.dropoff.delivery': 'Recipient Address',
+    'form.date.delivery': 'Date',
+    'form.time.delivery': 'Time',
+    'confirm.modal.pickup.delivery': 'Sender Address',
+    'confirm.modal.dropoff.delivery': 'Recipient Address',
   }
 };
 
