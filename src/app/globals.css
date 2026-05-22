@@ -212,6 +212,7 @@ p {
     height: auto !important;
     min-height: auto !important; /* Allow card to shrink when checklist is hidden */
     padding: 24px !important;
+    flex: none !important; /* Prevent flex-basis from setting a fixed 320px height in column layout */
   }
   
   .pricing-features-list {
