@@ -939,7 +939,7 @@ export default function Home() {
                 </p>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div style={styles.confirmDetailsContainer}>
                   <div style={styles.confirmRow}>
                     <span style={styles.confirmLabel}>{t('confirm.modal.name')}</span>
@@ -951,7 +951,24 @@ export default function Home() {
                   </div>
                   <div style={styles.confirmRow}>
                     <span style={styles.confirmLabel}>{t('confirm.modal.service')}</span>
-                    <span style={styles.confirmValue}>
+                    <span style={{
+                      backgroundColor: serviceType === 'xe-ghep' 
+                        ? 'rgba(24, 226, 153, 0.12)' 
+                        : serviceType === 'bao-xe' 
+                          ? 'rgba(10, 186, 181, 0.12)' 
+                          : 'rgba(59, 130, 246, 0.12)',
+                      color: serviceType === 'xe-ghep' 
+                        ? '#0fa36d' 
+                        : serviceType === 'bao-xe' 
+                          ? '#08807d' 
+                          : '#1d4ed8',
+                      padding: '4px 12px',
+                      borderRadius: '9999px',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.03em',
+                    }}>
                       {serviceType === 'xe-ghep' 
                         ? t('form.service.shared') 
                         : serviceType === 'bao-xe' 
@@ -963,8 +980,8 @@ export default function Home() {
                     <span style={styles.confirmLabel}>{t('confirm.modal.route')}</span>
                     <span style={styles.confirmValue}>
                       {route === 'tam-ky-da-nang' 
-                        ? (language === 'vi' ? 'Tam Kỳ ↔ Đà Nẵng' : 'Tam Ky ↔ Da Nang')
-                        : (language === 'vi' ? 'Đà Nẵng ↔ Tam Kỳ' : 'Da Nang ↔ Tam Ky')}
+                        ? <>Tam Kỳ <span style={{ color: '#12b77a', margin: '0 2px', fontWeight: 800 }}>↔</span> Đà Nẵng</>
+                        : <>Đà Nẵng <span style={{ color: '#12b77a', margin: '0 2px', fontWeight: 800 }}>↔</span> Tam Kỳ</>}
                     </span>
                   </div>
                   <div style={styles.confirmRow}>
@@ -982,7 +999,7 @@ export default function Home() {
                   <div style={styles.confirmRow}>
                     <span style={styles.confirmLabel}>{t('confirm.modal.datetime')}</span>
                     <span style={styles.confirmValue}>
-                      {time} | {dateOptions.find(opt => opt.value === date)?.label || date}
+                      {time} <span style={{ color: '#94a3b8', margin: '0 4px', fontWeight: 400 }}>|</span> {dateOptions.find(opt => opt.value === date)?.label || date}
                     </span>
                   </div>
                   {serviceType !== 'gui-hang' && (
@@ -995,11 +1012,11 @@ export default function Home() {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                <div style={{ display: 'flex', gap: '12px', marginTop: '4px' }}>
                   <button 
                     type="button" 
                     className="hover-highlight-secondary" 
-                    style={{ ...styles.btnSubmit, backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #e5e7eb', flex: 1 }}
+                    style={{ ...styles.btnSubmit, backgroundColor: '#f1f5f9', color: '#475569', border: 'none', borderRadius: '9999px', fontWeight: 700, flex: 1, marginTop: 0 }}
                     onClick={() => setIsConfirmModalOpen(false)}
                   >
                     {t('confirm.modal.edit')}
@@ -1007,7 +1024,7 @@ export default function Home() {
                   <button 
                     type="button" 
                     className="btn-primary" 
-                    style={{ ...styles.btnSubmit, flex: 1, marginTop: 0 }}
+                    style={{ ...styles.btnSubmit, flex: 1, marginTop: 0, borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                     onClick={handleConfirmBooking}
                   >
                     {t('confirm.modal.submit')}
@@ -1543,9 +1560,9 @@ const styles = {
     left: 0,
     width: '100vw',
     height: '100vh',
-    backgroundColor: 'rgba(13, 13, 13, 0.4)',
-    backdropFilter: 'blur(8px)',
-    WebkitBackdropFilter: 'blur(8px)',
+    backgroundColor: 'rgba(15, 23, 42, 0.3)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1553,12 +1570,12 @@ const styles = {
   },
   modalCard: {
     backgroundColor: '#ffffff',
-    border: '1px solid rgba(13, 13, 13, 0.08)',
-    borderRadius: '24px',
-    padding: '40px',
+    border: '1px solid rgba(241, 245, 249, 0.8)',
+    borderRadius: '28px',
+    padding: '32px',
     width: '100%',
     maxWidth: '460px',
-    boxShadow: '0 24px 60px rgba(13, 13, 13, 0.15)',
+    boxShadow: '0 25px 50px -12px rgba(15, 23, 42, 0.12)',
     position: 'relative' as const,
   },
   modalCloseBtn: {
@@ -1567,21 +1584,23 @@ const styles = {
     right: '20px',
     background: 'none',
     border: 'none',
-    color: '#666',
+    color: '#94a3b8',
     cursor: 'pointer',
-    padding: '8px',
+    padding: '6px',
     borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: 'background-color 0.2s ease',
-    backgroundColor: 'rgba(13, 13, 13, 0.02)',
+    transition: 'all 0.2s ease',
+    backgroundColor: '#f1f5f9',
   },
   modalTitle: {
-    fontSize: '24px',
+    fontSize: '22px',
     fontWeight: 800,
-    marginBottom: '28px',
+    color: '#0f172a',
+    marginBottom: '24px',
     textAlign: 'center' as const,
+    letterSpacing: '-0.02em',
   },
   modalForm: {
     display: 'flex',
@@ -1598,31 +1617,29 @@ const styles = {
   confirmDetailsContainer: {
     display: 'flex',
     flexDirection: 'column' as const,
-    gap: '12px',
-    backgroundColor: 'rgba(13, 13, 13, 0.02)',
-    borderRadius: '16px',
-    padding: '16px',
-    border: '1px solid rgba(13, 13, 13, 0.04)',
-    maxHeight: '320px',
-    overflowY: 'auto' as const,
+    gap: '14px',
+    backgroundColor: '#f8fafc',
+    borderRadius: '20px',
+    padding: '20px',
+    border: '1px solid #e2e8f0',
   },
   confirmRow: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: '16px',
-    paddingBottom: '8px',
-    borderBottom: '1px solid rgba(13, 13, 13, 0.04)',
   },
   confirmLabel: {
-    fontSize: '14px',
-    color: '#6b7280',
-    fontWeight: 500,
+    fontSize: '11px',
+    color: '#64748b',
+    fontWeight: 600,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
     flexShrink: 0,
   },
   confirmValue: {
     fontSize: '14px',
-    color: '#111827',
+    color: '#0f172a',
     fontWeight: 600,
     textAlign: 'right' as const,
     wordBreak: 'break-word' as const,

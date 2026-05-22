@@ -194,7 +194,7 @@ p {
     width: 100% !important;
     text-align: center !important;
   }
-  .hero-left-flex p {
+  .hero-left-flex p, .promo-pricing-left-banner {
     margin-left: auto !important;
     margin-right: auto !important;
   }
