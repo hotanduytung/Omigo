@@ -847,6 +847,12 @@ p {
     flex-direction: column !important;
     gap: 12px !important;
   }
+  
+  /* Optimize spacing for all sections on mobile */
+  section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
 }
 
 .footer-grid {
