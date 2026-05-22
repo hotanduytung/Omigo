@@ -258,7 +258,7 @@ export default function Home() {
       />
       
       {/* Hero Section */}
-      <section style={styles.heroSection}>
+      <section style={styles.heroSection} className="hero-section">
         <div className="container hero-container-flex" style={styles.heroContainer}>
           
           {/* Left Column: Heading & CTAs */}
@@ -446,7 +446,7 @@ export default function Home() {
                 </div>
 
                 {/* Row 3: Date, Time, and Quantity (3 columns or 2 columns if Gửi hàng) */}
-                <div className={`form-row ${serviceType === 'gui-hang' ? 'two-cols' : 'three-cols'}`}>
+                <div className="form-row three-cols">
                   <div className="form-group form-group-date">
                     <label className="field-label-compact">
                       {serviceType === 'gui-hang' ? t('form.date.delivery') : t('form.date')}
