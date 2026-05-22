@@ -148,17 +148,17 @@ export default function Home() {
   const [suggestRouteText, setSuggestRouteText] = useState('');
   const [suggestSuccess, setSuggestSuccess] = useState(false);
 
-  // Reset pickup/dropoff on route change to keep fields clean for placeholder input
-  useEffect(() => {
-    setPickup('');
-    setDropoff('');
-  }, [route]);
+  // Booking confirmation modal states
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   const handleSwap = (e: React.MouseEvent) => {
     e.preventDefault();
     const temp = pickup;
     setPickup(dropoff);
     setDropoff(temp);
+    // Swap selected route as well
+    setRoute((prev) => (prev === 'tam-ky-da-nang' ? 'da-nang-tam-ky' : 'tam-ky-da-nang'));
   };
 
   const handleQuantityChange = (val: number) => {
@@ -193,11 +193,21 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(
-      language === 'vi' 
-        ? `Đã gửi thông tin đặt xe:\n- Khách hàng: ${fullName}\n- SĐT: ${phone}\n- Dịch vụ: ${serviceType === 'xe-ghep' ? 'Xe ghép' : serviceType === 'bao-xe' ? 'Bao xe' : 'Gửi hàng'}\n- Tuyến đường: ${pickup} ↔ ${dropoff}\n- Chi tiết: ${quantity} ${serviceType === 'xe-ghep' ? 'ghế' : 'xe'}\n- Thời gian: ${date} ${time}`
-        : `Booking submitted:\n- Customer: ${fullName}\n- Phone: ${phone}\n- Service: ${serviceType}\n- Route: ${pickup} ↔ ${dropoff}\n- Details: ${quantity} ${serviceType === 'xe-ghep' ? 'seats' : 'vehicles'}\n- Time: ${date} ${time}`
-    );
+    setIsConfirmModalOpen(true);
+  };
+
+  const handleConfirmBooking = () => {
+    setBookingSuccess(true);
+    setTimeout(() => {
+      setBookingSuccess(false);
+      setIsConfirmModalOpen(false);
+      // Reset form fields
+      setFullName('');
+      setPhone('');
+      setPickup('');
+      setDropoff('');
+      setQuantity(1);
+    }, 2500);
   };
 
   const handleDriverSubmit = (e: React.FormEvent) => {
@@ -309,8 +319,6 @@ export default function Home() {
             <div 
               className={`booking-card ${isHighlighted ? 'pulse-highlight' : ''}`}
             >
-              <h3 style={{ ...styles.cardHeader, fontSize: '20px', marginBottom: '16px' }}>{t('nav.bookNow')}</h3>
-              
               {/* Service Selection Tabs at the top */}
               <div className="tabs-compact">
                 <button 
@@ -360,7 +368,11 @@ export default function Home() {
                   <label className="field-label-compact">{t('form.route')}</label>
                   <select
                     value={route}
-                    onChange={(e) => setRoute(e.target.value)}
+                    onChange={(e) => {
+                      setRoute(e.target.value);
+                      setPickup('');
+                      setDropoff('');
+                    }}
                     className="select-compact"
                   >
                     <option value="tam-ky-da-nang">{language === 'vi' ? 'Tam Kỳ ↔ Đà Nẵng' : 'Tam Ky ↔ Da Nang'}</option>
@@ -497,8 +509,8 @@ export default function Home() {
       <section id="services" style={styles.servicesSection}>
         <div className="container">
           <div style={styles.sectionHeader}>
-            <span style={styles.sectionBadge}>Bảng giá dịch vụ</span>
-            <h2 style={styles.sectionTitle}>Lựa chọn giải pháp di chuyển của bạn</h2>
+            <span style={styles.sectionBadge}>{t('pricing.badge')}</span>
+            <h2 style={styles.sectionTitle}>{t('pricing.heading')}</h2>
           </div>
           
           <div className="pricing-grid-flex" style={styles.pricingGrid}>
@@ -828,6 +840,110 @@ export default function Home() {
                   {t('suggest.modal.submit')}
                 </button>
               </form>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Booking Confirmation Modal Popup */}
+      {isConfirmModalOpen && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalCard} className="animate-fade-in modal-card-small">
+            <button 
+              style={styles.modalCloseBtn} 
+              onClick={() => setIsConfirmModalOpen(false)}
+              aria-label="Close modal"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <h3 style={styles.modalTitle}>{t('confirm.modal.title')}</h3>
+
+            {bookingSuccess ? (
+              <div style={styles.successMessage}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#12b77a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}>
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <p style={{ color: '#12b77a', fontWeight: 600, textAlign: 'center', fontFamily: 'var(--font-inter), sans-serif' }}>
+                  {t('confirm.modal.success')}
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={styles.confirmDetailsContainer}>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.name')}</span>
+                    <span style={styles.confirmValue}>{fullName}</span>
+                  </div>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.phone')}</span>
+                    <span style={styles.confirmValue}>{phone}</span>
+                  </div>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.service')}</span>
+                    <span style={styles.confirmValue}>
+                      {serviceType === 'xe-ghep' 
+                        ? t('form.service.shared') 
+                        : serviceType === 'bao-xe' 
+                          ? t('form.service.private') 
+                          : t('form.service.package')}
+                    </span>
+                  </div>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.route')}</span>
+                    <span style={styles.confirmValue}>
+                      {route === 'tam-ky-da-nang' 
+                        ? (language === 'vi' ? 'Tam Kỳ ↔ Đà Nẵng' : 'Tam Ky ↔ Da Nang')
+                        : (language === 'vi' ? 'Đà Nẵng ↔ Tam Kỳ' : 'Da Nang ↔ Tam Ky')}
+                    </span>
+                  </div>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.pickup')}</span>
+                    <span style={styles.confirmValue}>{pickup}</span>
+                  </div>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.dropoff')}</span>
+                    <span style={styles.confirmValue}>{dropoff}</span>
+                  </div>
+                  <div style={styles.confirmRow}>
+                    <span style={styles.confirmLabel}>{t('confirm.modal.datetime')}</span>
+                    <span style={styles.confirmValue}>
+                      {time} | {dateOptions.find(opt => opt.value === date)?.label || date}
+                    </span>
+                  </div>
+                  {serviceType !== 'gui-hang' && (
+                    <div style={styles.confirmRow}>
+                      <span style={styles.confirmLabel}>{t('confirm.modal.details')}</span>
+                      <span style={styles.confirmValue}>
+                        {quantity} {serviceType === 'xe-ghep' ? t('confirm.modal.seat') : t('confirm.modal.vehicle')}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                  <button 
+                    type="button" 
+                    className="hover-highlight-secondary" 
+                    style={{ ...styles.btnSubmit, backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #e5e7eb', flex: 1 }}
+                    onClick={() => setIsConfirmModalOpen(false)}
+                  >
+                    {t('confirm.modal.edit')}
+                  </button>
+                  <button 
+                    type="button" 
+                    className="btn-primary" 
+                    style={{ ...styles.btnSubmit, flex: 1, marginTop: 0 }}
+                    onClick={handleConfirmBooking}
+                  >
+                    {t('confirm.modal.submit')}
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>
@@ -1408,5 +1524,37 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     padding: '20px 0',
+  },
+  confirmDetailsContainer: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '12px',
+    backgroundColor: 'rgba(13, 13, 13, 0.02)',
+    borderRadius: '16px',
+    padding: '16px',
+    border: '1px solid rgba(13, 13, 13, 0.04)',
+    maxHeight: '320px',
+    overflowY: 'auto' as const,
+  },
+  confirmRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '16px',
+    paddingBottom: '8px',
+    borderBottom: '1px solid rgba(13, 13, 13, 0.04)',
+  },
+  confirmLabel: {
+    fontSize: '14px',
+    color: '#6b7280',
+    fontWeight: 500,
+    flexShrink: 0,
+  },
+  confirmValue: {
+    fontSize: '14px',
+    color: '#111827',
+    fontWeight: 600,
+    textAlign: 'right' as const,
+    wordBreak: 'break-word' as const,
   },
 };
