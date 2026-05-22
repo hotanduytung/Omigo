@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <footer style={styles.footer}>
-      <div className="container" style={styles.container}>
+      <div className="footer-grid">
         <div style={styles.colBrand}>
           <Logo light={false} />
           <p style={styles.brandDesc}>
@@ -93,22 +93,11 @@ const styles = {
     paddingTop: '64px',
     color: '#333333',
   },
-  container: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-    gap: '40px',
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 24px 48px',
-  },
   colBrand: {
     display: 'flex',
     flexDirection: 'column' as const,
     gap: '16px',
-    gridColumn: '1 / -1',
-    '@media (min-width: 992px)': {
-      gridColumn: 'span 2',
-    }
+    // Remove gridColumn to allow it to be on the same row as others
   },
   brandDesc: {
     fontSize: '14px',
