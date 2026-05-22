@@ -279,7 +279,6 @@ export default function Home() {
                   <span className="promo-left-label">{t('form.service.shared')}</span>
                   <div className="promo-left-prices">
                     <strong className="promo-left-new">90k</strong>
-                    <span className="promo-left-old">120k</span>
                   </div>
                 </div>
               </div>
@@ -291,7 +290,6 @@ export default function Home() {
                   <span className="promo-left-label">{t('form.service.private')}</span>
                   <div className="promo-left-prices">
                     <strong className="promo-left-new">330k</strong>
-                    <span className="promo-left-old">450k</span>
                   </div>
                 </div>
               </div>
@@ -303,7 +301,6 @@ export default function Home() {
                   <span className="promo-left-label">{t('form.service.package')}</span>
                   <div className="promo-left-prices">
                     <strong className="promo-left-new">50k</strong>
-                    <span className="promo-left-old">80k</span>
                   </div>
                 </div>
               </div>
