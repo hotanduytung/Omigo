@@ -1583,9 +1583,12 @@ const styles = {
     fontSize: '22px',
     fontWeight: 800,
     color: '#0f172a',
+    marginTop: '12px',
     marginBottom: '24px',
+    padding: '0 24px',
     textAlign: 'center' as const,
     letterSpacing: '-0.02em',
+    lineHeight: '1.4',
   },
   modalForm: {
     display: 'flex',
