@@ -76,8 +76,8 @@ export default function Home() {
   
   // Form states
   const [route, setRoute] = useState('tam-ky-da-nang');
-  const [pickup, setPickup] = useState('Tam Kỳ');
-  const [dropoff, setDropoff] = useState('Đà Nẵng');
+  const [pickup, setPickup] = useState('');
+  const [dropoff, setDropoff] = useState('');
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [serviceType, setServiceType] = useState<'xe-ghep' | 'bao-xe' | 'gui-hang'>('xe-ghep');
@@ -112,24 +112,24 @@ export default function Home() {
   const getPickupPlaceholder = () => {
     if (route === 'tam-ky-da-nang') {
       return language === 'vi' 
-        ? 'Nhập địa chỉ đón tại Tam Kỳ (VD: 12 Hùng Vương)' 
-        : 'Enter pickup address in Tam Ky (e.g. 12 Hung Vuong)';
+        ? 'Đón tại Tam Kỳ' 
+        : 'Pickup in Tam Ky';
     } else {
       return language === 'vi' 
-        ? 'Nhập địa chỉ đón tại Đà Nẵng (VD: Sân bay, Bệnh viện...)' 
-        : 'Enter pickup address in Da Nang (e.g. Airport, Hospital...)';
+        ? 'Đón tại Đà Nẵng' 
+        : 'Pickup in Da Nang';
     }
   };
 
   const getDropoffPlaceholder = () => {
     if (route === 'tam-ky-da-nang') {
       return language === 'vi' 
-        ? 'Nhập địa chỉ trả tại Đà Nẵng (VD: Sân bay, Bệnh viện...)' 
-        : 'Enter dropoff address in Da Nang (e.g. Airport, Hospital...)';
+        ? 'Trả tại Đà Nẵng' 
+        : 'Dropoff in Da Nang';
     } else {
       return language === 'vi' 
-        ? 'Nhập địa chỉ trả tại Tam Kỳ (VD: 12 Hùng Vương)' 
-        : 'Enter dropoff address in Tam Ky (e.g. 12 Hung Vuong)';
+        ? 'Trả tại Tam Kỳ' 
+        : 'Dropoff in Tam Ky';
     }
   };
 
@@ -148,16 +148,11 @@ export default function Home() {
   const [suggestRouteText, setSuggestRouteText] = useState('');
   const [suggestSuccess, setSuggestSuccess] = useState(false);
 
-  // Synchronize pickup/dropoff based on selected route
+  // Reset pickup/dropoff on route change to keep fields clean for placeholder input
   useEffect(() => {
-    if (route === 'tam-ky-da-nang') {
-      setPickup(language === 'vi' ? 'Tam Kỳ' : 'Tam Ky');
-      setDropoff(language === 'vi' ? 'Đà Nẵng' : 'Da Nang');
-    } else if (route === 'da-nang-tam-ky') {
-      setPickup(language === 'vi' ? 'Đà Nẵng' : 'Da Nang');
-      setDropoff(language === 'vi' ? 'Tam Kỳ' : 'Tam Ky');
-    }
-  }, [route, language]);
+    setPickup('');
+    setDropoff('');
+  }, [route]);
 
   const handleSwap = (e: React.MouseEvent) => {
     e.preventDefault();
