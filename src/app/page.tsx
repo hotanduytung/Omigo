@@ -150,14 +150,16 @@ export default function Home() {
   const [isDriverModalOpen, setIsDriverModalOpen] = useState(false);
   const [driverName, setDriverName] = useState('');
   const [driverPhone, setDriverPhone] = useState('');
-  const [driverVehicle, setDriverVehicle] = useState('4-cho');
+  const [driverVehicle, setDriverVehicle] = useState('');
+  const [driverArea, setDriverArea] = useState('');
+  const [driverExperience, setDriverExperience] = useState('');
   const [driverSuccess, setDriverSuccess] = useState(false);
 
-  // Suggest Route modal states
-  const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
-  const [suggestName, setSuggestName] = useState('');
+  // Suggest Route states (embedded in page)
+  const [suggestPickup, setSuggestPickup] = useState('');
+  const [suggestDropoff, setSuggestDropoff] = useState('');
   const [suggestPhone, setSuggestPhone] = useState('');
-  const [suggestRouteText, setSuggestRouteText] = useState('');
+  const [suggestNotes, setSuggestNotes] = useState('');
   const [suggestSuccess, setSuggestSuccess] = useState(false);
 
   // Booking confirmation modal states
@@ -230,6 +232,9 @@ export default function Home() {
       setIsDriverModalOpen(false);
       setDriverName('');
       setDriverPhone('');
+      setDriverVehicle('');
+      setDriverArea('');
+      setDriverExperience('');
     }, 2500);
   };
 
@@ -238,10 +243,10 @@ export default function Home() {
     setSuggestSuccess(true);
     setTimeout(() => {
       setSuggestSuccess(false);
-      setIsSuggestModalOpen(false);
-      setSuggestName('');
+      setSuggestPickup('');
+      setSuggestDropoff('');
       setSuggestPhone('');
-      setSuggestRouteText('');
+      setSuggestNotes('');
     }, 2500);
   };
 
@@ -331,6 +336,15 @@ export default function Home() {
             <div 
               className={`booking-card ${isHighlighted ? 'pulse-highlight' : ''}`}
             >
+              {/* Dynamic Form Heading */}
+              <h3 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '16px', textAlign: 'center', color: '#0d0d0d', letterSpacing: '-0.5px' }}>
+                {serviceType === 'xe-ghep' 
+                  ? (language === 'vi' ? 'Đặt xe ghép ngay' : 'Book Shared Ride Now') 
+                  : serviceType === 'bao-xe' 
+                    ? (language === 'vi' ? 'Đặt bao xe ngay' : 'Book Private Ride Now') 
+                    : (language === 'vi' ? 'Tạo đơn giao hàng ngay' : 'Create Delivery Order Now')}
+              </h3>
+              
               {/* Service Selection Tabs at the top */}
               <div className="tabs-compact">
                 <button 
@@ -675,34 +689,110 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Popular Routes Section */}
+      {/* Route Proposal Section */}
       <section id="routes" style={styles.routesSection}>
-        <div className="container" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={styles.sectionHeader}>
-            <span style={styles.sectionBadge}>{language === 'vi' ? 'Đóng góp ý kiến' : 'Feedback'}</span>
-            <h2 style={styles.sectionTitle}>{t('routes.title')}</h2>
-            <p style={{ 
-              fontSize: '16px', 
-              color: '#666', 
-              marginTop: '16px', 
-              lineHeight: '1.6',
-              fontFamily: 'var(--font-inter), sans-serif'
-            }}>
-              {language === 'vi' 
-                ? 'Bạn chưa tìm thấy lộ trình phù hợp? Hãy đóng góp lộ trình mà bạn mong muốn để Migo sớm kết nối tài xế và mở rộng tuyến đường phục vụ bạn.'
-                : 'Haven\'t found your preferred route yet? Propose your desired route so Migo can connect drivers and expand services to you soon.'
-              }
-            </p>
-          </div>
-          
-          <div style={{ marginTop: '24px' }}>
-            <button 
-              onClick={() => setIsSuggestModalOpen(true)} 
-              className="btn-primary hover-highlight-btn"
-              style={{ padding: '14px 36px', fontSize: '15px' }}
-            >
-              {language === 'vi' ? 'Đề xuất lộ trình ngay' : 'Propose Route Now'}
-            </button>
+        <div className="container">
+          <div className="suggest-route-card">
+            {/* Left Column */}
+            <div className="suggest-route-left">
+              <span className="suggest-badge">{language === 'vi' ? 'Đề xuất lộ trình' : 'Route Proposal'}</span>
+              <h2 className="suggest-heading">
+                {language === 'vi' ? (
+                  <>Bạn không tìm thấy <span style={{ color: '#18E299' }}>tuyến đường mình cần?</span></>
+                ) : (
+                  <>Haven't found the <span style={{ color: '#18E299' }}>route you need?</span></>
+                )}
+              </h2>
+              <p className="suggest-subtext">
+                {language === 'vi'
+                  ? 'Hãy cho chúng tôi biết lộ trình bạn mong muốn. Chúng tôi sẽ ghi nhận và phản hồi sớm nhất để sắp xếp chuyến đi phù hợp cho bạn.'
+                  : 'Let us know your desired route. We will record and respond as soon as possible to arrange a suitable trip for you.'}
+              </p>
+              
+              <div className="feedback-time-badge">
+                <div className="check-circle-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span className="feedback-time-text">
+                  {language === 'vi' ? 'Phản hồi trong vòng 15 phút' : 'Response within 15 minutes'}
+                </span>
+              </div>
+            </div>
+            
+            {/* Right Column */}
+            <div className="suggest-route-right">
+              <div className="suggest-form-container">
+                {suggestSuccess ? (
+                  <div style={styles.successMessage}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#12b77a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}>
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <p style={{ color: '#12b77a', fontWeight: 600, textAlign: 'center', fontFamily: 'var(--font-inter), sans-serif' }}>
+                      {language === 'vi'
+                        ? 'Đề xuất thành công! Migo chân thành cảm ơn đóng góp của bạn.'
+                        : 'Proposal submitted successfully! Thank you for your contribution.'}
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSuggestSubmit} className="suggest-form">
+                    <div className="suggest-form-row">
+                      <div className="suggest-form-group">
+                        <label className="suggest-form-label">{language === 'vi' ? 'Điểm đi' : 'Pickup'}</label>
+                        <input 
+                          type="text" 
+                          placeholder={language === 'vi' ? 'Ví dụ: Hội An' : 'e.g. Hoi An'} 
+                          value={suggestPickup}
+                          onChange={(e) => setSuggestPickup(e.target.value)}
+                          required
+                          className="suggest-input"
+                        />
+                      </div>
+                      <div className="suggest-form-group">
+                        <label className="suggest-form-label">{language === 'vi' ? 'Điểm đến' : 'Dropoff'}</label>
+                        <input 
+                          type="text" 
+                          placeholder={language === 'vi' ? 'Ví dụ: Chu Lai' : 'e.g. Chu Lai'} 
+                          value={suggestDropoff}
+                          onChange={(e) => setSuggestDropoff(e.target.value)}
+                          required
+                          className="suggest-input"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="suggest-form-group">
+                      <label className="suggest-form-label">{language === 'vi' ? 'Số điện thoại' : 'Phone Number'}</label>
+                      <input 
+                        type="tel" 
+                        placeholder={language === 'vi' ? 'Nhập số điện thoại của bạn' : 'Enter your phone number'} 
+                        value={suggestPhone}
+                        onChange={(e) => setSuggestPhone(e.target.value)}
+                        required
+                        className="suggest-input"
+                      />
+                    </div>
+                    
+                    <div className="suggest-form-group">
+                      <label className="suggest-form-label">{language === 'vi' ? 'Ghi chú thêm' : 'Additional Notes'}</label>
+                      <textarea 
+                        placeholder={language === 'vi' ? 'Thời gian mong muốn, số người...' : 'Desired time, number of people...'} 
+                        value={suggestNotes}
+                        onChange={(e) => setSuggestNotes(e.target.value)}
+                        rows={3}
+                        className="suggest-textarea"
+                      />
+                    </div>
+                    
+                    <button type="submit" className="btn-primary suggest-submit-btn">
+                      {language === 'vi' ? 'Gửi đề xuất ngay' : 'Submit Proposal'}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -724,7 +814,17 @@ export default function Home() {
               </svg>
             </button>
 
-            <h3 style={styles.modalTitle}>{t('driver.modal.title')}</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '24px', alignItems: 'flex-start' }}>
+              <span className="suggest-badge" style={{ marginBottom: '8px' }}>
+                {language === 'vi' ? 'Đối tác' : 'Partner'}
+              </span>
+              <h3 style={{ fontSize: '28px', fontWeight: 800, margin: 0, textAlign: 'left', color: '#0d0d0d', letterSpacing: '-0.5px' }}>
+                {language === 'vi' ? 'Trở thành đối tác Migo' : 'Become a Migo Partner'}
+              </h3>
+              <p style={{ fontSize: '16px', color: '#666', margin: 0, textAlign: 'left', lineHeight: '1.5' }}>
+                {language === 'vi' ? 'Gia nhập cộng đồng tài xế Migo và tối ưu thu nhập của bạn.' : 'Join the Migo driver community and maximize your income.'}
+              </p>
+            </div>
 
             {driverSuccess ? (
               <div style={styles.successMessage}>
@@ -737,49 +837,74 @@ export default function Home() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleDriverSubmit} style={styles.modalForm}>
+              <form onSubmit={handleDriverSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+                  <div style={styles.formField}>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Họ tên' : 'Full Name'}</label>
+                    <input 
+                      type="text" 
+                      placeholder="Nguyễn Văn A"
+                      value={driverName}
+                      onChange={(e) => setDriverName(e.target.value)}
+                      required
+                      className="suggest-input"
+                    />
+                  </div>
+
+                  <div style={styles.formField}>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'SĐT' : 'Phone'}</label>
+                    <input 
+                      type="tel" 
+                      placeholder="0905.XXX.XXX"
+                      value={driverPhone}
+                      onChange={(e) => setDriverPhone(e.target.value)}
+                      required
+                      className="suggest-input"
+                    />
+                  </div>
+
+                  <div style={styles.formField}>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Loại xe' : 'Vehicle'}</label>
+                    <input 
+                      type="text" 
+                      placeholder="Toyota Vios..."
+                      value={driverVehicle}
+                      onChange={(e) => setDriverVehicle(e.target.value)}
+                      required
+                      className="suggest-input"
+                    />
+                  </div>
+
+                  <div style={styles.formField}>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Khu vực' : 'Area'}</label>
+                    <input 
+                      type="text" 
+                      placeholder="Tam Kỳ, Hội An..."
+                      value={driverArea}
+                      onChange={(e) => setDriverArea(e.target.value)}
+                      required
+                      className="suggest-input"
+                    />
+                  </div>
+                </div>
+
                 <div style={styles.formField}>
-                  <label style={styles.fieldLabel}>{t('driver.modal.name')}</label>
-                  <input 
-                    type="text" 
-                    placeholder={language === 'vi' ? 'Nguyễn Văn A' : 'John Doe'}
-                    value={driverName}
-                    onChange={(e) => setDriverName(e.target.value)}
-                    required
-                    className="input-pill"
-                    style={styles.inputPillOverride}
+                  <label style={{ fontSize: '13px', fontWeight: 700, color: '#444', marginBottom: '8px', display: 'block' }}>{language === 'vi' ? 'Kinh nghiệm' : 'Experience'}</label>
+                  <textarea 
+                    placeholder="..."
+                    value={driverExperience}
+                    onChange={(e) => setDriverExperience(e.target.value)}
+                    className="suggest-textarea"
+                    rows={4}
                   />
                 </div>
 
-                <div style={styles.formField}>
-                  <label style={styles.fieldLabel}>{t('driver.modal.phone')}</label>
-                  <input 
-                    type="tel" 
-                    placeholder="0961 099 069"
-                    value={driverPhone}
-                    onChange={(e) => setDriverPhone(e.target.value)}
-                    required
-                    className="input-pill"
-                    style={styles.inputPillOverride}
-                  />
-                </div>
-
-                <div style={styles.formField}>
-                  <label style={styles.fieldLabel}>{t('driver.modal.vehicle')}</label>
-                  <select
-                    value={driverVehicle}
-                    onChange={(e) => setDriverVehicle(e.target.value)}
-                    className="input-pill"
-                    style={styles.selectPillOverride}
-                  >
-                    <option value="4-cho">{language === 'vi' ? 'Xe 4 chỗ' : '4-seat Car'}</option>
-                    <option value="5-cho">{language === 'vi' ? 'Xe 5 chỗ' : '5-seat Car'}</option>
-                    <option value="7-cho">{language === 'vi' ? 'Xe 7 chỗ' : '7-seat Car'}</option>
-                  </select>
-                </div>
-
-                <button type="submit" className="btn-primary" style={styles.btnSubmit}>
-                  {t('driver.modal.submit')}
+                <button type="submit" className="suggest-submit-btn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                  {language === 'vi' ? 'Gửi hồ sơ' : 'Submit Profile'}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
                 </button>
               </form>
             )}
@@ -787,82 +912,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Route Proposal Modal Popup */}
-      {isSuggestModalOpen && (
-        <div style={styles.modalOverlay}>
-          <div style={styles.modalCard} className="animate-fade-in modal-card-small">
-            <button 
-              style={styles.modalCloseBtn} 
-              onClick={() => setIsSuggestModalOpen(false)}
-              aria-label="Close modal"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
 
-            <h3 style={styles.modalTitle}>{t('suggest.modal.title')}</h3>
-
-            {suggestSuccess ? (
-              <div style={styles.successMessage}>
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#12b77a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}>
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-                <p style={{ color: '#12b77a', fontWeight: 600, textAlign: 'center', fontFamily: 'var(--font-inter), sans-serif' }}>
-                  {t('suggest.modal.success')}
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSuggestSubmit} style={styles.modalForm}>
-                <div style={styles.formField}>
-                  <label style={styles.fieldLabel}>{t('driver.modal.name')}</label>
-                  <input 
-                    type="text" 
-                    placeholder={language === 'vi' ? 'Nguyễn Văn A' : 'John Doe'}
-                    value={suggestName}
-                    onChange={(e) => setSuggestName(e.target.value)}
-                    required
-                    className="input-pill"
-                    style={styles.inputPillOverride}
-                  />
-                </div>
-
-                <div style={styles.formField}>
-                  <label style={styles.fieldLabel}>{t('driver.modal.phone')}</label>
-                  <input 
-                    type="tel" 
-                    placeholder="0961 099 069"
-                    value={suggestPhone}
-                    onChange={(e) => setSuggestPhone(e.target.value)}
-                    required
-                    className="input-pill"
-                    style={styles.inputPillOverride}
-                  />
-                </div>
-
-                <div style={styles.formField}>
-                  <label style={styles.fieldLabel}>{t('suggest.modal.route')}</label>
-                  <input 
-                    type="text" 
-                    placeholder={language === 'vi' ? 'Tam Kỳ - Đà Nẵng' : 'Tam Ky - Da Nang'}
-                    value={suggestRouteText}
-                    onChange={(e) => setSuggestRouteText(e.target.value)}
-                    required
-                    className="input-pill"
-                    style={styles.inputPillOverride}
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary" style={styles.btnSubmit}>
-                  {t('suggest.modal.submit')}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
 
       {/* Booking Confirmation Modal Popup */}
       {isConfirmModalOpen && (
@@ -1383,7 +1433,7 @@ const styles = {
     border: 'none',
   },
   routesSection: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fafafa',
     padding: '80px 0',
   },
   routeDetailsBox: {
