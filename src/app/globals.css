@@ -210,7 +210,12 @@ p {
     width: 100% !important;
     max-width: 480px !important;
     height: auto !important;
+    min-height: auto !important; /* Allow card to shrink when checklist is hidden */
     padding: 24px !important;
+  }
+  
+  .pricing-features-list {
+    display: none !important;
   }
   
   /* Compact overrides for mobile/tablet */
@@ -435,7 +440,7 @@ p {
 .swap-btn-container-inline {
   display: flex;
   align-items: flex-end;
-  padding-bottom: 6px;
+  padding-bottom: 3px;
 }
 
 .swap-btn-inline {
@@ -528,7 +533,7 @@ p {
 }
 
 .stepper-value {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 15px;
   color: #0d0d0d;
 }
@@ -675,7 +680,7 @@ p {
 
   .swap-btn-container-inline {
     align-self: flex-end;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
   }
 
   .swap-btn-inline {
