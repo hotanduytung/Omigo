@@ -229,6 +229,10 @@ p {
   .field-label-compact {
     font-size: 11px;
     margin-bottom: 2px;
+    min-height: 28px;
+    display: flex;
+    align-items: flex-end;
+    line-height: 1.2;
   }
   .input-compact, .select-compact {
     height: 40px;
