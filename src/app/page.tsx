@@ -264,7 +264,17 @@ export default function Home() {
           {/* Left Column: Heading & CTAs */}
           <div className="hero-left-flex" style={styles.heroLeft}>
             <span style={styles.badge}>OMIGO.VN</span>
-            <h1 style={styles.heroTitle}>{t('hero.title')}</h1>
+            <h1 style={styles.heroTitle}>
+              {language === 'vi' ? (
+                <>
+                  Di chuyển thông minh cùng <span style={{ color: '#12b77a' }}>Omigo</span>
+                </>
+              ) : (
+                <>
+                  Smart travel with <span style={{ color: '#12b77a' }}>Omigo</span>
+                </>
+              )}
+            </h1>
             <p style={{ ...styles.heroSubtitle, marginBottom: '24px' }}>
               {language === 'vi' 
                 ? <>Dịch vụ xe ghép uy tín, an toàn và tiết kiệm.<br />Chuyên tuyến Tam Kỳ - Đà Nẵng.</>
