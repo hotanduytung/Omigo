@@ -852,15 +852,16 @@ p {
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 40px;
+  gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px 48px;
+  padding: 0 24px 32px;
 }
 
 @media (min-width: 768px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
   }
 }
 
@@ -868,5 +869,6 @@ p {
   .footer-grid {
     grid-template-columns: 2fr 1fr 1fr;
     gap: 32px;
+    padding-bottom: 48px;
   }
 }

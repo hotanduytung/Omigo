@@ -14,8 +14,8 @@ export default function Footer() {
           <Logo light={false} />
           <p style={styles.brandDesc}>
             {language === 'vi' 
-              ? 'Dịch vụ vận chuyển hành khách chuyên nghiệp, uy tín hàng đầu khu vực Đà Nẵng - Quảng Nam. Chúng tôi cam kết mang lại trải nghiệm di chuyển an toàn và tiết kiệm nhất.' 
-              : 'Professional, top reputable passenger transport service in Da Nang - Quang Nam area. We are committed to bringing the safest and most economical travel experience.'}
+              ? 'Dịch vụ vận chuyển hành khách chuyên nghiệp, uy tín hàng đầu khu vực Đà Nẵng <-> Tam Kỳ. Chúng tôi cam kết mang lại trải nghiệm di chuyển an toàn và tiết kiệm nhất.' 
+              : 'Professional, top reputable passenger transport service in Da Nang <-> Tam Ky area. We are committed to bringing the safest and most economical travel experience.'}
           </p>
           <div style={{ ...styles.socials, marginTop: '8px' }}>
             <a href="https://www.facebook.com/migo.vn/" target="_blank" rel="noopener noreferrer" style={styles.socialLink} title="Facebook">
@@ -44,7 +44,7 @@ export default function Footer() {
           <ul style={styles.linkList}>
             <li><a href="#" style={styles.link}>{language === 'vi' ? 'Trang chủ' : 'Home'}</a></li>
             <li><a href="#services" style={styles.link}>{language === 'vi' ? 'Dịch vụ' : 'Services'}</a></li>
-            <li><a href="#routes" style={styles.link}>{language === 'vi' ? 'Đề xuất' : 'Suggest Route'}</a></li>
+            <li><a href="#routes" style={styles.link}>{language === 'vi' ? 'Đóng góp lộ trình' : 'Suggest Route'}</a></li>
           </ul>
         </div>
 
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
       </div>
       <div style={styles.bottomBar}>
-        <p style={styles.rights}>{language === 'vi' ? '© 2024 Omigo - Dịch vụ xe ghép cao cấp. Tất cả quyền được bảo lưu.' : '© 2024 Omigo - Premium carpool service. All rights reserved.'}</p>
+        <p style={styles.rights}>{language === 'vi' ? '© 2026 Omigo - Dịch vụ xe ghép cao cấp. Tất cả quyền được bảo lưu.' : '© 2026 Omigo - Premium carpool service. All rights reserved.'}</p>
       </div>
     </footer>
   );
@@ -85,7 +85,7 @@ const styles = {
   footer: {
     backgroundColor: '#ffffff',
     borderTop: '1px solid #f0f0f0',
-    paddingTop: '64px',
+    paddingTop: '48px',
     color: '#333333',
   },
   colBrand: {

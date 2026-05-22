@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Migo - Di chuyển thông minh, tiết kiệm',
-  description: 'Migo kết nối các chuyến xe ghép, bao xe và gửi hàng an toàn, siêu rẻ tại Việt Nam.',
+  title: 'Omigo - Di chuyển thông minh, tiết kiệm',
+  description: 'Omigo kết nối các chuyến xe ghép, bao xe và gửi hàng an toàn, siêu rẻ tại Việt Nam.',
 };
 
 export default function RootLayout({
