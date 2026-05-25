@@ -1056,7 +1056,7 @@ const styles = {
     flexDirection: 'column' as const,
   },
   heroSection: {
-    backgroundColor: '#ffffff',
+    background: 'radial-gradient(circle at 85% 50%, rgba(24, 226, 153, 0.12) 0%, transparent 45%), radial-gradient(circle at 15% 20%, rgba(24, 226, 153, 0.06) 0%, transparent 35%), #fdfdfd',
     padding: '80px 0',
     borderBottom: '1px solid rgba(13, 13, 13, 0.05)',
   },
@@ -1140,7 +1140,7 @@ const styles = {
     border: '1px solid rgba(13, 13, 13, 0.08)',
     borderRadius: '24px',
     padding: '32px',
-    boxShadow: '0 16px 48px rgba(13, 13, 13, 0.05)',
+    boxShadow: '0 20px 60px -12px rgba(24, 226, 153, 0.12), 0 12px 32px rgba(13, 13, 13, 0.04)',
     transition: 'all 0.3s ease',
   },
   cardHeader: {
