@@ -11,7 +11,7 @@ export default function Footer() {
     <footer style={styles.footer}>
       <div className="footer-grid">
         <div style={styles.colBrand}>
-          <Logo light={false} />
+          <Logo light={false} showDomain={true} />
           <p style={styles.brandDesc}>
             {language === 'vi' 
               ? 'Dịch vụ vận chuyển hành khách chuyên nghiệp, uy tín hàng đầu khu vực Đà Nẵng <-> Tam Kỳ. Chúng tôi cam kết mang lại trải nghiệm di chuyển an toàn và tiết kiệm nhất.' 

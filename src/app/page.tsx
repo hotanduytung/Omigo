@@ -71,6 +71,22 @@ const timeOptions = Array.from({ length: 15 }, (_, i) => {
   };
 });
 
+interface TimeSlot {
+  _id: string;
+  departureTime: string;
+  arrivalTime: string;
+  fixedPrice: number;
+  status: string;
+}
+
+interface TripConfig {
+  _id: string;
+  origin: string;
+  destination: string;
+  status: string;
+  timeSlots: TimeSlot[];
+}
+
 export default function Home() {
   const { t, language } = useLanguage();
   
@@ -86,6 +102,23 @@ export default function Home() {
   const [time, setTime] = useState('');
   const [mounted, setMounted] = useState(false);
   const [dateOptions, setDateOptions] = useState<{ value: string; label: string }[]>([]);
+  
+  // API states
+  const [tripConfigs, setTripConfigs] = useState<TripConfig[]>([]);
+  const [isBookingLoading, setIsBookingLoading] = useState(false);
+  const [isDriverLoading, setIsDriverLoading] = useState(false);
+  const [isSuggestLoading, setIsSuggestLoading] = useState(false);
+
+  const getMatchedConfig = () => {
+    const isTamKyToDaNang = route === 'tam-ky-da-nang';
+    return tripConfigs.find(config => {
+      if (isTamKyToDaNang) {
+        return config.origin === 'Tam Kỳ' && config.destination === 'Đà Nẵng';
+      } else {
+        return config.origin === 'Đà Nẵng' && config.destination === 'Tam Kỳ';
+      }
+    });
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -95,7 +128,27 @@ export default function Home() {
       setDate(options[0].value);
     }
     setTime('07:00');
+
+    // Fetch trip configurations from local API
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/trip-configs`)
+      .then(res => res.json())
+      .then(res => {
+        if (res?.data?.items) {
+          setTripConfigs(res.data.items);
+        }
+      })
+      .catch(err => console.error("Error fetching trip configs:", err));
   }, []);
+
+  // Auto-update time slot if route or configurations change
+  useEffect(() => {
+    const matched = getMatchedConfig();
+    if (matched && matched.timeSlots && matched.timeSlots.length > 0) {
+      setTime(matched.timeSlots[0].departureTime);
+    } else {
+      setTime('07:00');
+    }
+  }, [route, tripConfigs]);
 
   // Update dateOptions labels if language changes
   useEffect(() => {
@@ -211,43 +264,133 @@ export default function Home() {
   };
 
   const handleConfirmBooking = () => {
-    setBookingSuccess(true);
-    setTimeout(() => {
-      setBookingSuccess(false);
-      setIsConfirmModalOpen(false);
-      // Reset form fields
-      setFullName('');
-      setPhone('');
-      setPickup('');
-      setDropoff('');
-      setQuantity(1);
-    }, 2500);
+    const matchedConfig = getMatchedConfig();
+    if (!matchedConfig) {
+      alert(language === 'vi' ? 'Không tìm thấy cấu hình tuyến cho chuyến đi này.' : 'Trip configuration not found for this route.');
+      return;
+    }
+    
+    const requestedDepartureTime = `${date}T${time}:00Z`;
+
+    setIsBookingLoading(true);
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/trip-requests`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userName: fullName,
+        phoneNumber: phone,
+        tripConfigId: matchedConfig._id,
+        pickupSpecificPoint: pickup,
+        dropoffSpecificPoint: dropoff,
+        requestedSeatCount: quantity,
+        requestedDepartureTime: requestedDepartureTime,
+        serviceType: serviceType,
+      }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || 'Error booking trip');
+        }
+        setBookingSuccess(true);
+        setTimeout(() => {
+          setBookingSuccess(false);
+          setIsConfirmModalOpen(false);
+          // Reset form fields
+          setFullName('');
+          setPhone('');
+          setPickup('');
+          setDropoff('');
+          setQuantity(1);
+        }, 2500);
+      })
+      .catch((err) => {
+        alert(err.message || (language === 'vi' ? 'Đã xảy ra lỗi khi đặt chuyến. Vui lòng thử lại.' : 'Error booking trip. Please try again.'));
+      })
+      .finally(() => {
+        setIsBookingLoading(false);
+      });
   };
 
   const handleDriverSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setDriverSuccess(true);
-    setTimeout(() => {
-      setDriverSuccess(false);
-      setIsDriverModalOpen(false);
-      setDriverName('');
-      setDriverPhone('');
-      setDriverVehicle('');
-      setDriverArea('');
-      setDriverExperience('');
-    }, 2500);
+    setIsDriverLoading(true);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/drivers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: driverName,
+        phoneNumber: driverPhone,
+        vehicleType: driverVehicle,
+        licenseNumber: driverExperience || 'Chưa cập nhật',
+        licensePlate: driverArea || 'Chưa cập nhật',
+      }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || 'Error registering driver');
+        }
+        setDriverSuccess(true);
+        setTimeout(() => {
+          setDriverSuccess(false);
+          setIsDriverModalOpen(false);
+          setDriverName('');
+          setDriverPhone('');
+          setDriverVehicle('');
+          setDriverArea('');
+          setDriverExperience('');
+        }, 2500);
+      })
+      .catch((err) => {
+        alert(err.message || (language === 'vi' ? 'Đã xảy ra lỗi khi đăng ký. Vui lòng thử lại.' : 'Error registering. Please try again.'));
+      })
+      .finally(() => {
+        setIsDriverLoading(false);
+      });
   };
 
   const handleSuggestSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSuggestSuccess(true);
-    setTimeout(() => {
-      setSuggestSuccess(false);
-      setSuggestPickup('');
-      setSuggestDropoff('');
-      setSuggestPhone('');
-      setSuggestNotes('');
-    }, 2500);
+    setIsSuggestLoading(true);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/route-suggestions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        origin: suggestPickup,
+        destination: suggestDropoff,
+        phoneNumber: suggestPhone,
+        note: suggestNotes,
+      }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || 'Error sending suggestion');
+        }
+        setSuggestSuccess(true);
+        setTimeout(() => {
+          setSuggestSuccess(false);
+          setSuggestPickup('');
+          setSuggestDropoff('');
+          setSuggestPhone('');
+          setSuggestNotes('');
+        }, 2500);
+      })
+      .catch((err) => {
+        alert(err.message || (language === 'vi' ? 'Đã xảy ra lỗi khi gửi đề xuất. Vui lòng thử lại.' : 'Error sending suggestion. Please try again.'));
+      })
+      .finally(() => {
+        setIsSuggestLoading(false);
+      });
   };
 
   return (
@@ -486,11 +629,21 @@ export default function Home() {
                       required
                       className="select-compact"
                     >
-                      {timeOptions.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
+                      {(() => {
+                        const matchedConfig = getMatchedConfig();
+                        if (matchedConfig && matchedConfig.timeSlots && matchedConfig.timeSlots.length > 0) {
+                          return matchedConfig.timeSlots.map((slot) => (
+                            <option key={slot._id} value={slot.departureTime}>
+                              {slot.departureTime}
+                            </option>
+                          ));
+                        }
+                        return timeOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ));
+                      })()}
                     </select>
                   </div>
 
@@ -793,8 +946,13 @@ export default function Home() {
                       />
                     </div>
                     
-                    <button type="submit" className="btn-primary suggest-submit-btn">
-                      {t('suggest.modal.submit')}
+                    <button 
+                      type="submit" 
+                      disabled={isSuggestLoading}
+                      className="btn-primary suggest-submit-btn"
+                      style={{ opacity: isSuggestLoading ? 0.7 : 1, cursor: isSuggestLoading ? 'not-allowed' : 'pointer' }}
+                    >
+                      {isSuggestLoading ? (language === 'vi' ? 'Đang gửi...' : 'Submitting...') : t('suggest.modal.submit')}
                     </button>
                   </form>
                 )}
@@ -906,12 +1064,19 @@ export default function Home() {
                   />
                 </div>
 
-                <button type="submit" className="suggest-submit-btn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                  {t('driver.modal.submit')}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
+                <button 
+                  type="submit" 
+                  disabled={isDriverLoading}
+                  className="suggest-submit-btn" 
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', opacity: isDriverLoading ? 0.7 : 1, cursor: isDriverLoading ? 'not-allowed' : 'pointer' }}
+                >
+                  {isDriverLoading ? (language === 'vi' ? 'Đang gửi...' : 'Submitting...') : t('driver.modal.submit')}
+                  {!isDriverLoading && (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  )}
                 </button>
               </form>
             )}
@@ -1031,13 +1196,14 @@ export default function Home() {
                   >
                     {t('confirm.modal.edit')}
                   </button>
-                  <button 
+                   <button 
                     type="button" 
                     className="btn-primary" 
-                    style={{ ...styles.btnSubmit, flex: 1, marginTop: 0, borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                    style={{ ...styles.btnSubmit, flex: 1, marginTop: 0, borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', opacity: isBookingLoading ? 0.7 : 1, cursor: isBookingLoading ? 'not-allowed' : 'pointer' }}
                     onClick={handleConfirmBooking}
+                    disabled={isBookingLoading}
                   >
-                    {t('confirm.modal.submit')}
+                    {isBookingLoading ? (language === 'vi' ? 'Đang đặt...' : 'Booking...') : t('confirm.modal.submit')}
                   </button>
                 </div>
               </div>
