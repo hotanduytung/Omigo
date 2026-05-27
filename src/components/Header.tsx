@@ -32,21 +32,21 @@ export default function Header({
 
   return (
     <header style={styles.header}>
-      <div className="container" style={styles.container}>
+      <div style={styles.container}>
         <Link href="/" style={styles.logoLink}>
           <Logo />
         </Link>
         
-        <nav style={styles.nav} className="nav-menu">
-          <a href="#services" style={styles.navLink}>
+        <nav className="nav-menu" style={styles.nav}>
+          <a href="#services" className="header-nav-link">
             {t('nav.services')}
           </a>
-          <a href="#routes" style={styles.navLink}>
+          <a href="#routes" className="header-nav-link">
             {t('nav.routes')}
           </a>
           <button 
             onClick={onBecomeDriverClick} 
-            style={styles.navLinkHighlightBtn}
+            className="header-nav-link"
           >
             {t('nav.becomeDriver')}
           </button>
@@ -55,7 +55,7 @@ export default function Header({
         <div style={styles.rightActions}>
           <button 
             onClick={handleLanguageChange} 
-            style={styles.langBtn}
+            className="header-lang-btn"
             aria-label="Toggle language"
           >
             {language === 'vi' ? 'EN' : 'VN'}
@@ -63,6 +63,7 @@ export default function Header({
           
           <button 
             onClick={handleScrollToBooking}
+            className="btn-primary"
             style={styles.bookBtn}
           >
             {t('nav.bookNow')}
@@ -78,19 +79,19 @@ const styles = {
     position: 'sticky' as const,
     top: 0,
     zIndex: 100,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    borderBottom: '1px solid rgba(13, 13, 13, 0.05)',
-    padding: '16px 0',
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
+    borderBottom: '1px solid var(--color-hairline-soft)',
+    padding: '14px 0',
   },
   container: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    maxWidth: '1200px',
+    maxWidth: '1280px',
     margin: '0 auto',
-    padding: '0 24px',
+    padding: '0 32px',
   },
   logoLink: {
     textDecoration: 'none',
@@ -100,54 +101,14 @@ const styles = {
     alignItems: 'center',
     gap: '32px',
   },
-  navLink: {
-    fontFamily: 'var(--font-inter), sans-serif',
-    fontSize: '14px',
-    fontWeight: 500,
-    color: '#666',
-    textDecoration: 'none',
-    transition: 'color 0.2s ease',
-  },
-  navLinkHighlightBtn: {
-    fontFamily: 'var(--font-inter), sans-serif',
-    fontSize: '14px',
-    fontWeight: 500,
-    color: '#0d0d0d',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    padding: 0,
-    textDecoration: 'none',
-    transition: 'opacity 0.2s ease',
-  },
   rightActions: {
     display: 'flex',
     alignItems: 'center',
     gap: '16px',
   },
-  langBtn: {
-    background: 'none',
-    border: 'none',
-    fontFamily: 'var(--font-inter), sans-serif',
-    fontSize: '12px',
-    fontWeight: 600,
-    color: '#0d0d0d',
-    cursor: 'pointer',
-    padding: '6px 10px',
-    borderRadius: '9999px',
-    backgroundColor: 'rgba(13, 13, 13, 0.04)',
-    transition: 'background-color 0.2s ease',
-  },
   bookBtn: {
-    fontFamily: 'var(--font-inter), sans-serif',
-    fontSize: '14px',
-    fontWeight: 600,
-    color: '#ffffff',
-    backgroundColor: '#0d0d0d',
-    border: 'none',
-    padding: '10px 20px',
-    borderRadius: '9999px',
-    cursor: 'pointer',
-    transition: 'background-color 0.2s ease, transform 0.1s ease',
-  },
+    fontSize: '13px',
+    fontWeight: 500,
+    padding: '8px 16px',
+  }
 };
