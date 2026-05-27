@@ -1111,3 +1111,15 @@ p {
   box-shadow: 0 4px 12px rgba(0, 212, 164, 0.12) !important;
   text-decoration: none !important;
 }
+
+/* Contact bar item hover effect */
+.contact-bar-item-hover {
+  transition: all 0.18s ease !important;
+}
+.contact-bar-item-hover:hover {
+  background-color: rgba(0, 212, 164, 0.06) !important;
+  text-decoration: none !important;
+}
+.contact-bar-item-hover:hover span:last-child {
+  color: #0d0d0d !important;
+}
