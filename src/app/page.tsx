@@ -378,79 +378,57 @@ export default function Home() {
               }
             </p>
 
-            {/* Service Price Quick-View */}
-            <div style={styles.priceMiniBar}>
-              <div style={styles.priceMiniItem}>
-                <span style={styles.priceMiniLabel}>{language === 'vi' ? 'Xe ghép' : 'Carpool'}</span>
-                <div style={styles.priceMiniValue}>
-                  <span style={styles.priceMiniAmount}>90k</span>
-                  <span style={styles.priceMiniUnit}>{language === 'vi' ? '/ghế' : '/seat'}</span>
-                </div>
-              </div>
-              <div style={styles.priceMiniDivider} />
-              <div style={styles.priceMiniItem}>
-                <span style={styles.priceMiniLabel}>{language === 'vi' ? 'Bao xe' : 'Private'}</span>
-                <div style={styles.priceMiniValue}>
-                  <span style={styles.priceMiniAmount}>330k</span>
-                  <span style={styles.priceMiniUnit}>{language === 'vi' ? '/xe' : '/car'}</span>
-                </div>
-              </div>
-              <div style={styles.priceMiniDivider} />
-              <div style={styles.priceMiniItem}>
-                <span style={styles.priceMiniLabel}>{language === 'vi' ? 'Giao hàng' : 'Delivery'}</span>
-                <div style={styles.priceMiniValue}>
-                  <span style={styles.priceMiniAmount}>50k</span>
-                  <span style={styles.priceMiniUnit}>{language === 'vi' ? '/đơn' : '/pkg'}</span>
-                </div>
-              </div>
-            </div>
-            
+            {/* CTA */}
             <div style={styles.ctaGroup} className="cta-group-center">
-              <button onClick={handleBookNowClick} className="btn-accent-green hover-highlight-btn" style={{ fontSize: '15px', padding: '12px 28px', fontWeight: 600, boxShadow: '0 4px 20px rgba(0, 212, 164, 0.35)' }}>
+              <button onClick={handleBookNowClick} className="btn-accent-green hover-highlight-btn" style={{ fontSize: '15px', padding: '13px 32px', fontWeight: 600, boxShadow: '0 6px 24px rgba(0, 212, 164, 0.32)', letterSpacing: '-0.2px' }}>
                 {language === 'vi' ? 'Đặt chuyến ngay' : 'Book a ride'}
               </button>
             </div>
 
-            {/* Social Contact Bar — professional unified design */}
-            <div style={styles.contactBar}>
-              <span style={styles.contactBarLabel}>{language === 'vi' ? 'Liên hệ' : 'Contact us'}</span>
-              <div style={styles.contactBarDividerV} />
-              <a
-                href="https://www.facebook.com/omigo.vn"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.contactBarItem}
-                className="contact-bar-item-hover"
-              >
-                <span style={{ ...styles.contactBarIcon, backgroundColor: '#EEF4FF' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </span>
-                <span style={styles.contactBarText}>Facebook</span>
-              </a>
-              <div style={styles.contactBarDividerV} />
-              <a
-                href="https://zalo.me/0961099069"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.contactBarItem}
-                className="contact-bar-item-hover"
-              >
-                <span style={{ ...styles.contactBarIcon, backgroundColor: '#EEF6FF' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#0068FF"/><text x="4" y="17" fontFamily="Arial" fontWeight="bold" fontSize="9" fill="white">zalo</text></svg>
-                </span>
-                <span style={styles.contactBarText}>Zalo</span>
-              </a>
-              <div style={styles.contactBarDividerV} />
-              <a
-                href="tel:0961099069"
-                style={styles.contactBarItem}
-                className="contact-bar-item-hover"
-              >
-                <span style={{ ...styles.contactBarIcon, backgroundColor: '#ECFDF5' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
-                </span>
-                <span style={styles.contactBarText}>0961 099 069</span>
-              </a>
+            {/* Unified Price + Contact Strip */}
+            <div style={styles.infoStrip}>
+              {/* Prices */}
+              <div style={styles.stripPrices}>
+                <div style={styles.stripPriceItem}>
+                  <span style={styles.stripPriceLabel}>{language === 'vi' ? 'Xe ghép' : 'Carpool'}</span>
+                  <div style={styles.stripPriceRow}>
+                    <span style={styles.stripPriceAmt}>90k</span>
+                    <span style={styles.stripPriceUnit}>{language === 'vi' ? '/ghế' : '/seat'}</span>
+                  </div>
+                </div>
+                <span style={styles.stripDot}>·</span>
+                <div style={styles.stripPriceItem}>
+                  <span style={styles.stripPriceLabel}>{language === 'vi' ? 'Bao xe' : 'Private'}</span>
+                  <div style={styles.stripPriceRow}>
+                    <span style={styles.stripPriceAmt}>330k</span>
+                    <span style={styles.stripPriceUnit}>{language === 'vi' ? '/xe' : '/car'}</span>
+                  </div>
+                </div>
+                <span style={styles.stripDot}>·</span>
+                <div style={styles.stripPriceItem}>
+                  <span style={styles.stripPriceLabel}>{language === 'vi' ? 'Giao hàng' : 'Delivery'}</span>
+                  <div style={styles.stripPriceRow}>
+                    <span style={styles.stripPriceAmt}>50k</span>
+                    <span style={styles.stripPriceUnit}>{language === 'vi' ? '/đơn' : '/pkg'}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Vertical separator */}
+              <div style={styles.stripVSep} />
+
+              {/* Contact icons */}
+              <div style={styles.stripContacts}>
+                <a href="https://www.facebook.com/omigo.vn" target="_blank" rel="noopener noreferrer" style={styles.stripIconBtn} className="strip-icon-hover" title="Facebook">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://zalo.me/0961099069" target="_blank" rel="noopener noreferrer" style={styles.stripIconBtn} className="strip-icon-hover" title="Zalo">
+                  <svg width="16" height="16" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#0068FF"/><text x="3.5" y="16.5" fontFamily="Arial" fontWeight="900" fontSize="8.5" fill="white">zalo</text></svg>
+                </a>
+                <a href="tel:0961099069" style={styles.stripIconBtn} className="strip-icon-hover" title="0961 099 069">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
+                </a>
+              </div>
             </div>
           </div>
           
@@ -1220,110 +1198,88 @@ const styles = {
     marginBottom: '20px',
     lineHeight: '1.5',
   },
-  priceMiniBar: {
-    display: 'flex',
+  infoStrip: {
+    display: 'inline-flex',
     alignItems: 'center',
-    gap: '0px',
-    backgroundColor: 'rgba(255,255,255,0.75)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    border: '1px solid rgba(0, 212, 164, 0.2)',
-    borderRadius: '16px',
-    padding: '10px 4px',
-    marginBottom: '28px',
-    maxWidth: '460px',
-    boxShadow: '0 4px 16px rgba(0, 212, 164, 0.06)',
+    marginTop: '24px',
+    backgroundColor: 'rgba(255, 255, 255, 0.72)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    border: '1px solid rgba(255, 255, 255, 0.9)',
+    borderRadius: '18px',
+    padding: '12px 16px',
+    boxShadow: '0 2px 20px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255,255,255,0.8)',
+    gap: '0',
+    maxWidth: '520px',
   },
-  priceMiniItem: {
-    flex: 1,
+  stripPrices: {
     display: 'flex',
-    flexDirection: 'column' as const,
     alignItems: 'center',
     gap: '2px',
-    padding: '6px 8px',
   },
-  priceMiniLabel: {
-    fontSize: '11px',
+  stripPriceItem: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '1px',
+    padding: '0 10px',
+  },
+  stripPriceLabel: {
+    fontSize: '10px',
     fontWeight: 700,
-    color: '#64748b',
+    color: '#a0aec0',
     textTransform: 'uppercase' as const,
-    letterSpacing: '0.06em',
+    letterSpacing: '0.07em',
+    lineHeight: 1,
   },
-  priceMiniValue: {
+  stripPriceRow: {
     display: 'flex',
     alignItems: 'baseline',
     gap: '1px',
+    marginTop: '2px',
   },
-  priceMiniAmount: {
-    fontSize: '22px',
+  stripPriceAmt: {
+    fontSize: '19px',
     fontWeight: 700,
     color: 'var(--color-brand-green-deep)',
     fontFamily: 'var(--font-mono)',
     lineHeight: 1.1,
+    letterSpacing: '-0.5px',
   },
-  priceMiniUnit: {
-    fontSize: '12px',
-    color: '#64748b',
+  stripPriceUnit: {
+    fontSize: '11px',
+    color: '#94a3b8',
     fontWeight: 500,
   },
-  priceMiniDivider: {
-    width: '1px',
-    height: '36px',
-    background: 'rgba(0, 212, 164, 0.2)',
+  stripDot: {
+    color: 'rgba(0,0,0,0.12)',
+    fontSize: '20px',
+    lineHeight: 1,
+    userSelect: 'none' as const,
+    padding: '0 2px',
     flexShrink: 0,
   },
-  contactBar: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0px',
-    marginTop: '20px',
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    border: '1px solid rgba(13, 13, 13, 0.08)',
-    borderRadius: '14px',
-    padding: '6px 10px',
-    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)',
-  },
-  contactBarLabel: {
-    fontSize: '11px',
-    fontWeight: 700,
-    color: '#94a3b8',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.08em',
-    padding: '0 10px 0 4px',
-    whiteSpace: 'nowrap' as const,
-  },
-  contactBarDividerV: {
+  stripVSep: {
     width: '1px',
-    height: '24px',
-    backgroundColor: 'rgba(13, 13, 13, 0.08)',
+    height: '32px',
+    backgroundColor: 'rgba(0, 0, 0, 0.07)',
+    margin: '0 12px',
     flexShrink: 0,
   },
-  contactBarItem: {
-    display: 'inline-flex',
+  stripContacts: {
+    display: 'flex',
     alignItems: 'center',
-    gap: '7px',
-    padding: '6px 12px',
-    textDecoration: 'none',
-    color: '#1e293b',
-    transition: 'all 0.18s ease',
-    borderRadius: '8px',
+    gap: '2px',
   },
-  contactBarIcon: {
+  stripIconBtn: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '24px',
-    height: '24px',
-    borderRadius: '6px',
+    width: '34px',
+    height: '34px',
+    borderRadius: '10px',
+    textDecoration: 'none',
+    transition: 'all 0.16s ease',
     flexShrink: 0,
-  },
-  contactBarText: {
-    fontSize: '13px',
-    fontWeight: 500,
-    color: '#374151',
-    whiteSpace: 'nowrap' as const,
   },
   ctaGroup: {
     display: 'flex',
