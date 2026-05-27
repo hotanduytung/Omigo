@@ -379,10 +379,10 @@ export default function Home() {
             </p>
             
             <div style={styles.ctaGroup} className="cta-group-center">
-              <button onClick={handleBookNowClick} className="btn-primary">
+              <button onClick={handleBookNowClick} className="btn-accent-green hover-highlight-btn" style={{ fontSize: '15px', padding: '12px 28px', fontWeight: 600, boxShadow: '0 4px 20px rgba(0, 212, 164, 0.35)' }}>
                 {language === 'vi' ? 'Đặt chuyến ngay' : 'Book a ride'}
               </button>
-              <a href="tel:0961099069" className="btn-secondary">
+              <a href="tel:0961099069" className="btn-secondary hover-highlight-secondary">
                 {t('hero.call')}
               </a>
             </div>
@@ -572,7 +572,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <button type="submit" className="btn-primary" style={styles.btnSubmit}>
+                <button type="submit" className="btn-accent-green" style={{ ...styles.btnSubmit, boxShadow: '0 4px 16px rgba(0, 212, 164, 0.25)', fontWeight: 600 }}>
                   {t('form.confirm')}
                 </button>
               </form>
@@ -1107,9 +1107,10 @@ const styles = {
     flexDirection: 'column' as const,
   },
   heroSection: {
-    background: 'linear-gradient(180deg, rgba(224, 242, 254, 0.4) 0%, rgba(250, 250, 249, 0.4) 100%)',
+    background: 'linear-gradient(135deg, rgba(0, 180, 216, 0.12) 0%, rgba(0, 212, 164, 0.08) 50%, rgba(224, 242, 254, 0.35) 100%)',
     padding: '80px 0',
     borderBottom: '1px solid var(--color-hairline-soft)',
+    position: 'relative' as const,
   },
   heroContainer: {
     display: 'flex',

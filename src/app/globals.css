@@ -338,7 +338,7 @@ p {
   .input-compact, .select-compact {
     height: 40px;
     font-size: 14px;
-    padding: 8px 16px;
+    padding: 8px 18px;
   }
   .select-compact {
     background-position: right 16px center;
@@ -480,44 +480,52 @@ p {
 
 .input-compact {
   width: 100%;
-  border-radius: 8px;
-  border: 1px solid rgba(13, 13, 13, 0.08);
-  padding: 10px 16px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(13, 13, 13, 0.08);
+  padding: 10px 20px;
   font-family: var(--font-sans);
-  font-size: 15px; /* Larger font size */
-  height: 48px; /* Larger height on desktop */
+  font-size: 15px;
+  height: 48px;
   transition: all 0.25s ease;
-  background-color: #fafafa;
+  background-color: #f5f7fa;
+  color: var(--color-text-charcoal);
 }
 
 .input-compact:focus {
   border-color: var(--color-brand-green);
   background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(0, 212, 164, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 212, 164, 0.12);
+  outline: none;
+}
+
+.input-compact::placeholder {
+  color: #aab4c0;
 }
 
 .select-compact {
   width: 100%;
-  border-radius: 8px;
-  border: 1px solid rgba(13, 13, 13, 0.08);
-  padding: 10px 16px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(13, 13, 13, 0.08);
+  padding: 10px 20px;
   font-family: var(--font-sans);
-  font-size: 15px; /* Larger font size */
-  height: 48px; /* Larger height on desktop */
+  font-size: 15px;
+  height: 48px;
   transition: all 0.25s ease;
-  background-color: #fafafa;
+  background-color: #f5f7fa;
+  color: var(--color-text-charcoal);
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
+  background-position: right 18px center;
+  padding-right: 42px;
 }
 
 .select-compact:focus {
   border-color: var(--color-brand-green);
   background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(0, 212, 164, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 212, 164, 0.12);
+  outline: none;
 }
 
 /* Custom column widths inside three-cols row to prevent cutoffs for Date */
@@ -948,16 +956,20 @@ p {
   width: 100%;
   height: 48px;
   justify-content: center;
-  font-weight: 500;
-  background-color: var(--color-canvas-dark) !important;
-  color: var(--color-text-on-dark) !important;
+  font-weight: 600;
+  background-color: var(--color-brand-green) !important;
+  color: var(--color-text-ink) !important;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 212, 164, 0.25);
+  transition: all 0.2s ease;
 }
 
 .suggest-submit-btn:hover {
-  background-color: var(--color-text-charcoal) !important;
+  background-color: var(--color-brand-green-deep) !important;
+  box-shadow: 0 6px 20px rgba(0, 212, 164, 0.35) !important;
+  transform: translateY(-1px) !important;
 }
 
 @media (max-width: 991px) {
