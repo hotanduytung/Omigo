@@ -378,56 +378,67 @@ export default function Home() {
               }
             </p>
 
-            {/* CTA */}
-            <div style={styles.ctaGroup} className="cta-group-center">
-              <button onClick={handleBookNowClick} className="btn-accent-green hover-highlight-btn" style={{ fontSize: '15px', padding: '13px 32px', fontWeight: 600, boxShadow: '0 6px 24px rgba(0, 212, 164, 0.32)', letterSpacing: '-0.2px' }}>
+            {/* CTA + Contact Inline */}
+            <div className="cta-social-row-container">
+              <button 
+                onClick={handleBookNowClick} 
+                className="btn-accent-green hover-highlight-btn" 
+                style={{ fontSize: '15px', padding: '13px 32px', fontWeight: 600, boxShadow: '0 6px 24px rgba(0, 212, 164, 0.32)', letterSpacing: '-0.2px' }}
+              >
                 {language === 'vi' ? 'Đặt chuyến ngay' : 'Book a ride'}
               </button>
-            </div>
-
-            {/* Unified Price + Contact Strip */}
-            <div style={styles.infoStrip}>
-              {/* Prices */}
-              <div style={styles.stripPrices}>
-                <div style={styles.stripPriceItem}>
-                  <span style={styles.stripPriceLabel}>{language === 'vi' ? 'Xe ghép' : 'Carpool'}</span>
-                  <div style={styles.stripPriceRow}>
-                    <span style={styles.stripPriceAmt}>90k</span>
-                    <span style={styles.stripPriceUnit}>{language === 'vi' ? '/ghế' : '/seat'}</span>
-                  </div>
-                </div>
-                <span style={styles.stripDot}>·</span>
-                <div style={styles.stripPriceItem}>
-                  <span style={styles.stripPriceLabel}>{language === 'vi' ? 'Bao xe' : 'Private'}</span>
-                  <div style={styles.stripPriceRow}>
-                    <span style={styles.stripPriceAmt}>330k</span>
-                    <span style={styles.stripPriceUnit}>{language === 'vi' ? '/xe' : '/car'}</span>
-                  </div>
-                </div>
-                <span style={styles.stripDot}>·</span>
-                <div style={styles.stripPriceItem}>
-                  <span style={styles.stripPriceLabel}>{language === 'vi' ? 'Giao hàng' : 'Delivery'}</span>
-                  <div style={styles.stripPriceRow}>
-                    <span style={styles.stripPriceAmt}>50k</span>
-                    <span style={styles.stripPriceUnit}>{language === 'vi' ? '/đơn' : '/pkg'}</span>
-                  </div>
+              
+              <div className="cta-social-links-wrap">
+                <span className="cta-social-text-or">
+                  {language === 'vi' ? '— hoặc đặt qua' : '— or book via'}
+                </span>
+                <div className="cta-social-links">
+                  <a href="https://www.facebook.com/omigo.vn" target="_blank" rel="noopener noreferrer" className="cta-social-link-item fb" title="Facebook">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#1877F2" style={{ marginRight: '4px' }}><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                  </a>
+                  <span className="cta-social-separator">/</span>
+                  <a href="https://zalo.me/0961099069" target="_blank" rel="noopener noreferrer" className="cta-social-link-item zalo" title="Zalo">
+                    <svg width="14" height="14" viewBox="0 0 24 24" style={{ marginRight: '4px', borderRadius: '3.5px' }}><rect width="24" height="24" rx="5" fill="#0068FF"/><text x="3.5" y="16.5" fontFamily="Arial" fontWeight="900" fontSize="8.5" fill="white">zalo</text></svg>
+                    Zalo
+                  </a>
+                  <span className="cta-social-separator">/</span>
+                  <a href="tel:0961099069" className="cta-social-link-item phone" title="0961 099 069">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px' }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
+                    {language === 'vi' ? 'Gọi 0961 099 069' : 'Call 0961 099 069'}
+                  </a>
                 </div>
               </div>
+            </div>
 
-              {/* Vertical separator */}
-              <div style={styles.stripVSep} />
-
-              {/* Contact icons */}
-              <div style={styles.stripContacts}>
-                <a href="https://www.facebook.com/omigo.vn" target="_blank" rel="noopener noreferrer" style={styles.stripIconBtn} className="strip-icon-hover" title="Facebook">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-                <a href="https://zalo.me/0961099069" target="_blank" rel="noopener noreferrer" style={styles.stripIconBtn} className="strip-icon-hover" title="Zalo">
-                  <svg width="16" height="16" viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#0068FF"/><text x="3.5" y="16.5" fontFamily="Arial" fontWeight="900" fontSize="8.5" fill="white">zalo</text></svg>
-                </a>
-                <a href="tel:0961099069" style={styles.stripIconBtn} className="strip-icon-hover" title="0961 099 069">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
-                </a>
+            {/* Seamless Pricing Card (Shown Separately) */}
+            <div className="promo-pricing-left-banner">
+              <div className="promo-left-card">
+                <span className="promo-left-label">{language === 'vi' ? 'Xe ghép' : 'Carpool'}</span>
+                <div className="promo-left-prices">
+                  <span className="promo-left-new">90k</span>
+                  <span style={styles.stripPriceUnit}>{language === 'vi' ? '/ghế' : '/seat'}</span>
+                </div>
+              </div>
+              
+              <div className="promo-left-divider" />
+              
+              <div className="promo-left-card">
+                <span className="promo-left-label">{language === 'vi' ? 'Bao xe' : 'Private'}</span>
+                <div className="promo-left-prices">
+                  <span className="promo-left-new">330k</span>
+                  <span style={styles.stripPriceUnit}>{language === 'vi' ? '/xe' : '/car'}</span>
+                </div>
+              </div>
+              
+              <div className="promo-left-divider" />
+              
+              <div className="promo-left-card">
+                <span className="promo-left-label">{language === 'vi' ? 'Gửi hàng' : 'Delivery'}</span>
+                <div className="promo-left-prices">
+                  <span className="promo-left-new">50k</span>
+                  <span style={styles.stripPriceUnit}>{language === 'vi' ? '/đơn' : '/pkg'}</span>
+                </div>
               </div>
             </div>
           </div>

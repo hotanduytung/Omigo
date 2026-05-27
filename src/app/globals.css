@@ -749,6 +749,106 @@ p {
   }
 }
 
+/* CTA & Social Row Inline Styling */
+.cta-social-row-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.cta-social-links-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cta-social-text-or {
+  font-size: 14px;
+  color: var(--color-text-slate);
+  font-weight: 500;
+}
+
+.cta-social-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.cta-social-link-item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-ink);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background-color: rgba(13, 13, 13, 0.03);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+.cta-social-link-item:hover {
+  background-color: rgba(13, 13, 13, 0.08);
+  border-color: rgba(13, 13, 13, 0.15);
+  transform: translateY(-1px);
+}
+
+.cta-social-link-item.phone {
+  color: var(--color-brand-green-deep);
+  background-color: var(--color-brand-green-soft);
+  border-color: rgba(0, 212, 164, 0.15);
+}
+
+.cta-social-link-item.phone:hover {
+  background-color: rgba(0, 212, 164, 0.25);
+  border-color: var(--color-brand-green-deep);
+}
+
+.cta-social-separator {
+  color: #cbd5e1;
+  user-select: none;
+  font-weight: 400;
+  margin: 0 2px;
+}
+
+@media (max-width: 991px) {
+  .cta-social-row-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  
+  .cta-social-links-wrap {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-social-links {
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  
+  .cta-social-separator {
+    display: none !important;
+  }
+  
+  .cta-social-link-item {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 8px 16px !important;
+  }
+}
+
 
 @media (max-width: 768px) {
   .booking-card {
