@@ -15,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Omigo - Di chuyển thông minh, tiết kiệm',
-  description: 'Omigo kết nối các chuyến xe ghép, bao xe và gửi hàng an toàn, siêu rẻ tại Việt Nam.',
+  title: 'omigo.vn - Dịch vụ đặt xe ghép, xe đi chung chuyên nghiệp',
+  description: 'omigo.vn kết nối dịch vụ đặt xe ghép, xe đi chung, bao xe chặng ngắn và vận chuyển hàng hóa nhanh chóng, an toàn, tiết kiệm chi phí di chuyển tối đa.',
+  keywords: 'xe ghép, xe đi chung, đặt xe ghép, omigo, omigo.vn, xe ghép miền trung, xe ghép đà nẵng tam kỳ, đi chung xe',
 };
 
 export default function RootLayout({
