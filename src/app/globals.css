@@ -1099,3 +1099,15 @@ p {
   background-color: var(--color-surface-soft);
   border-color: rgba(13, 13, 13, 0.15);
 }
+
+/* Contact pill hover effect */
+.contact-pill-hover {
+  transition: all 0.2s ease !important;
+}
+.contact-pill-hover:hover {
+  background-color: #f0fdf9 !important;
+  border-color: rgba(0, 212, 164, 0.3) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 212, 164, 0.12) !important;
+  text-decoration: none !important;
+}

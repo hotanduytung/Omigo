@@ -377,13 +377,73 @@ export default function Home() {
                 : 'Carpools, private rides & courier delivery Da Nang ↔ Tam Ky.'
               }
             </p>
+
+            {/* Service Price Quick-View */}
+            <div style={styles.priceMiniBar}>
+              <div style={styles.priceMiniItem}>
+                <span style={styles.priceMiniLabel}>{language === 'vi' ? 'Xe ghép' : 'Carpool'}</span>
+                <div style={styles.priceMiniValue}>
+                  <span style={styles.priceMiniAmount}>90k</span>
+                  <span style={styles.priceMiniUnit}>{language === 'vi' ? '/ghế' : '/seat'}</span>
+                </div>
+              </div>
+              <div style={styles.priceMiniDivider} />
+              <div style={styles.priceMiniItem}>
+                <span style={styles.priceMiniLabel}>{language === 'vi' ? 'Bao xe' : 'Private'}</span>
+                <div style={styles.priceMiniValue}>
+                  <span style={styles.priceMiniAmount}>330k</span>
+                  <span style={styles.priceMiniUnit}>{language === 'vi' ? '/xe' : '/car'}</span>
+                </div>
+              </div>
+              <div style={styles.priceMiniDivider} />
+              <div style={styles.priceMiniItem}>
+                <span style={styles.priceMiniLabel}>{language === 'vi' ? 'Giao hàng' : 'Delivery'}</span>
+                <div style={styles.priceMiniValue}>
+                  <span style={styles.priceMiniAmount}>50k</span>
+                  <span style={styles.priceMiniUnit}>{language === 'vi' ? '/đơn' : '/pkg'}</span>
+                </div>
+              </div>
+            </div>
             
             <div style={styles.ctaGroup} className="cta-group-center">
               <button onClick={handleBookNowClick} className="btn-accent-green hover-highlight-btn" style={{ fontSize: '15px', padding: '12px 28px', fontWeight: 600, boxShadow: '0 4px 20px rgba(0, 212, 164, 0.35)' }}>
                 {language === 'vi' ? 'Đặt chuyến ngay' : 'Book a ride'}
               </button>
-              <a href="tel:0961099069" className="btn-secondary hover-highlight-secondary">
-                {t('hero.call')}
+            </div>
+
+            {/* Social Contact Quick Links */}
+            <div style={styles.contactRow} className="cta-group-center">
+              <span style={styles.contactRowLabel}>{language === 'vi' ? 'Liên hệ:' : 'Contact:'}</span>
+              <a
+                href="https://www.facebook.com/omigo.vn"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.contactPill}
+                className="contact-pill-hover"
+              >
+                {/* Facebook icon */}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook
+              </a>
+              <a
+                href="https://zalo.me/0961099069"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.contactPill, color: '#0068FF' }}
+                className="contact-pill-hover"
+              >
+                {/* Zalo icon */}
+                <svg width="15" height="15" viewBox="0 0 50 50" fill="#0068FF"><path d="M25 3C12.85 3 3 12.85 3 25s9.85 22 22 22 22-9.85 22-22S37.15 3 25 3zm-4.5 11h3v14h-3V14zm8 0h3v14h-3V14zm-11 16h14v3H17.5v-3z"/></svg>
+                Zalo
+              </a>
+              <a
+                href="tel:0961099069"
+                style={{ ...styles.contactPill, color: '#16a34a' }}
+                className="contact-pill-hover"
+              >
+                {/* Phone icon */}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
+                0961 099 069
               </a>
             </div>
           </div>
@@ -479,9 +539,9 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Date, Time, and Quantity */}
-                <div className="form-row three-cols">
-                  <div className="form-group form-group-date" style={styles.formField}>
+                {/* Date and Time — two columns so date text shows fully */}
+                <div className="form-row two-cols">
+                  <div className="form-group form-group-date" style={{ ...styles.formField, flex: 1.5 }}>
                     <label className="field-label-compact">
                       {serviceType === 'gui-hang' ? t('form.date.delivery') : t('form.date')}
                     </label>
@@ -503,7 +563,7 @@ export default function Home() {
                     </select>
                   </div>
 
-                  <div className="form-group form-group-time" style={styles.formField}>
+                  <div className="form-group form-group-time" style={{ ...styles.formField, flex: 1 }}>
                     <label className="field-label-compact">
                       {serviceType === 'gui-hang' ? t('form.time.delivery') : t('form.time')}
                     </label>
@@ -532,7 +592,7 @@ export default function Home() {
                   </div>
 
                   {serviceType !== 'gui-hang' && (
-                    <div className="form-group form-group-qty" style={styles.formField}>
+                    <div className="form-group form-group-qty" style={{ ...styles.formField, flex: 0.9 }}>
                       <label className="field-label-compact">
                         {serviceType === 'xe-ghep' ? t('form.seats') : t('form.vehicles')}
                       </label>
@@ -1146,8 +1206,90 @@ const styles = {
   heroSubtitle: {
     fontSize: '18px',
     color: 'var(--color-text-slate)',
-    marginBottom: '32px',
+    marginBottom: '20px',
     lineHeight: '1.5',
+  },
+  priceMiniBar: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0px',
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+    border: '1px solid rgba(0, 212, 164, 0.2)',
+    borderRadius: '16px',
+    padding: '10px 4px',
+    marginBottom: '28px',
+    maxWidth: '460px',
+    boxShadow: '0 4px 16px rgba(0, 212, 164, 0.06)',
+  },
+  priceMiniItem: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    gap: '2px',
+    padding: '6px 8px',
+  },
+  priceMiniLabel: {
+    fontSize: '11px',
+    fontWeight: 700,
+    color: '#64748b',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.06em',
+  },
+  priceMiniValue: {
+    display: 'flex',
+    alignItems: 'baseline',
+    gap: '1px',
+  },
+  priceMiniAmount: {
+    fontSize: '22px',
+    fontWeight: 700,
+    color: 'var(--color-brand-green-deep)',
+    fontFamily: 'var(--font-mono)',
+    lineHeight: 1.1,
+  },
+  priceMiniUnit: {
+    fontSize: '12px',
+    color: '#64748b',
+    fontWeight: 500,
+  },
+  priceMiniDivider: {
+    width: '1px',
+    height: '36px',
+    background: 'rgba(0, 212, 164, 0.2)',
+    flexShrink: 0,
+  },
+  contactRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    flexWrap: 'wrap' as const,
+    marginTop: '16px',
+  },
+  contactRowLabel: {
+    fontSize: '12px',
+    fontWeight: 600,
+    color: '#94a3b8',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.06em',
+    marginRight: '2px',
+  },
+  contactPill: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '6px',
+    padding: '7px 14px',
+    borderRadius: '9999px',
+    border: '1px solid rgba(13, 13, 13, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    fontSize: '13px',
+    fontWeight: 500,
+    color: '#374151',
+    textDecoration: 'none',
+    transition: 'all 0.2s ease',
+    boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
   },
   ctaGroup: {
     display: 'flex',
