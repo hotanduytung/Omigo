@@ -30,10 +30,17 @@ export default function Header({
     }
   };
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header style={styles.header}>
       <div style={styles.container}>
-        <Link href="/" style={styles.logoLink}>
+        <Link href="/" style={styles.logoLink} onClick={handleLogoClick}>
           <Logo />
         </Link>
         

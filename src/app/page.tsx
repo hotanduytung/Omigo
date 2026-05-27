@@ -366,15 +366,15 @@ export default function Home() {
             <span style={styles.badge}>OMIGO.VN</span>
             <h1 style={styles.heroTitle}>
               {language === 'vi' ? (
-                <>Di chuyển thông minh cùng <span style={{ color: 'var(--color-brand-green-deep)' }}>Omigo</span></>
+                <>Di chuyển thông minh.</>
               ) : (
-                <>Smart travel with <span style={{ color: 'var(--color-brand-green-deep)' }}>Omigo</span></>
+                <>Smart travel.</>
               )}
             </h1>
             <p style={styles.heroSubtitle}>
               {language === 'vi' 
-                ? 'Dịch vụ xe ghép, bao xe và giao nhận hàng chặng Đà Nẵng ↔ Tam Kỳ. An toàn, đúng giờ, đón trả tận nơi.'
-                : 'Shared rides, private cars and courier delivery Da Nang ↔ Tam Ky. Safe, punctual, door-to-door.'
+                ? 'Xe ghép, bao xe & gửi hàng Đà Nẵng ↔ Tam Kỳ.'
+                : 'Carpools, private rides & courier delivery Da Nang ↔ Tam Ky.'
               }
             </p>
             
@@ -383,9 +383,6 @@ export default function Home() {
                 {language === 'vi' ? 'Đặt chuyến ngay' : 'Book a ride'}
               </button>
               <a href="tel:0961099069" className="btn-secondary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
                 {t('hero.call')}
               </a>
             </div>
@@ -590,7 +587,7 @@ export default function Home() {
         <div className="container">
           <div style={styles.sectionHeader}>
             <span style={styles.sectionBadge}>{t('pricing.badge')}</span>
-            <h2 style={styles.sectionTitle}>{t('pricing.heading')}</h2>
+            <h2 style={styles.sectionTitle}>{language === 'vi' ? 'Dịch vụ của chúng tôi' : 'Our Services'}</h2>
           </div>
           
           <div className="pricing-grid-flex" style={styles.pricingGrid}>
@@ -605,7 +602,6 @@ export default function Home() {
                   <span style={styles.iconTag}>{language === 'vi' ? 'Cá nhân' : 'Individual'}</span>
                 </div>
                 <h3 style={styles.pricingTitle}>{t('pricing.shared.title')}</h3>
-                <p style={styles.pricingDesc}>{t('pricing.shared.desc')}</p>
                 
                 <ul style={styles.featuresList}>
                   <li style={styles.featureItem}>
@@ -614,11 +610,11 @@ export default function Home() {
                   </li>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Tối ưu chi phí' : 'Cost optimization'}</span>
+                    <span>{language === 'vi' ? 'Xe đời mới sạch sẽ' : 'Clean modern cars'}</span>
                   </li>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Xe đời mới sạch sẽ' : 'Clean modern cars'}</span>
+                    <span>{language === 'vi' ? 'Tiết kiệm tối đa' : 'Maximum savings'}</span>
                   </li>
                 </ul>
               </div>
@@ -655,7 +651,6 @@ export default function Home() {
                   <span style={{ ...styles.iconTag, color: 'var(--color-brand-green)' }}>{language === 'vi' ? 'Gia đình & Nhóm' : 'Family & Group'}</span>
                 </div>
                 <h3 style={styles.pricingTitle}>{t('pricing.private.title')}</h3>
-                <p style={styles.pricingDesc}>{t('pricing.private.desc')}</p>
                 
                 <ul style={styles.featuresList}>
                   <li style={styles.featureItem}>
@@ -664,11 +659,11 @@ export default function Home() {
                   </li>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Chủ động thời gian' : 'Full schedule flexibility'}</span>
+                    <span>{language === 'vi' ? 'Thời gian linh hoạt' : 'Full schedule flexibility'}</span>
                   </li>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Không dừng bắt khách' : 'Direct nonstop trip'}</span>
+                    <span>{language === 'vi' ? 'Điểm đón tùy chọn' : 'Customizable pickup points'}</span>
                   </li>
                 </ul>
               </div>
@@ -703,20 +698,19 @@ export default function Home() {
                   <span style={styles.iconTag}>{language === 'vi' ? 'Hàng hóa' : 'Cargo'}</span>
                 </div>
                 <h3 style={styles.pricingTitle}>{t('pricing.package.title')}</h3>
-                <p style={styles.pricingDesc}>{t('pricing.package.desc')}</p>
                 
                 <ul style={styles.featuresList}>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Giao nhận trong ngày' : 'Same-day fast delivery'}</span>
+                    <span>{language === 'vi' ? 'Giao nhận trong ngày' : 'Same-day delivery'}</span>
                   </li>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Đảm bảo an toàn' : 'Safety guaranteed'}</span>
+                    <span>{language === 'vi' ? 'Bảo đảm an toàn' : 'Safety guaranteed'}</span>
                   </li>
                   <li style={styles.featureItem}>
                     <svg style={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-green)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>{language === 'vi' ? 'Giao hàng tận tay' : 'Door-to-door handover'}</span>
+                    <span>{language === 'vi' ? 'Cước phí tối ưu' : 'Optimized courier rates'}</span>
                   </li>
                 </ul>
               </div>
@@ -742,30 +736,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial Section (Sleek Orange card) */}
-      <section style={styles.testimonialSection}>
-        <div className="container">
-          <div style={styles.testimonialCard}>
-            <div style={styles.testimonialLeft}>
-              <span style={styles.quoteIcon}>“</span>
-              <blockquote style={styles.testimonialQuote}>
-                {language === 'vi'
-                  ? 'Xe ghép Omigo cực kỳ sạch sẽ, đúng giờ và lái xe an toàn. Đây là lựa chọn hàng đầu của tôi mỗi khi di chuyển Đà Nẵng ↔ Tam Kỳ.'
-                  : 'Omigo shared rides are extremely clean, punctual, and safe. It is always my top choice when traveling between Da Nang and Tam Ky.'}
-              </blockquote>
-              <div style={styles.testimonialAuthor}>
-                <strong style={styles.authorName}>Mai Vy</strong>
-                <span style={styles.authorRole}>
-                  {language === 'vi' ? 'Hành khách thường xuyên' : 'Regular Passenger'}
-                </span>
-              </div>
-            </div>
-            <div style={styles.testimonialRight}>
-              <div style={styles.avatarMock}>MV</div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Route Proposal Section */}
       <section id="routes" style={styles.routesSection}>
@@ -783,8 +754,8 @@ export default function Home() {
               </h2>
               <p className="suggest-subtext">
                 {language === 'vi'
-                  ? 'Hãy cho chúng tôi biết lộ trình bạn mong muốn. Omigo ghi nhận và sắp xếp chuyến đi phù hợp nhất cho bạn.'
-                  : 'Let us know your desired route. Omigo will record and arrange the most suitable trip for you.'}
+                  ? 'Cho chúng tôi biết lộ trình của bạn để được hỗ trợ nhanh nhất.'
+                  : 'Tell us your route details to get assistance as soon as possible.'}
               </p>
               
               <div className="feedback-time-badge">
@@ -1317,7 +1288,7 @@ const styles = {
     maxWidth: '360px',
     display: 'flex',
     flexDirection: 'column' as const,
-    minHeight: '440px',
+    minHeight: '380px',
     padding: '32px',
     justifyContent: 'space-between',
     backgroundColor: 'var(--color-canvas)',
@@ -1333,7 +1304,7 @@ const styles = {
     padding: '32px',
     display: 'flex',
     flexDirection: 'column' as const,
-    minHeight: '440px',
+    minHeight: '380px',
     position: 'relative' as const,
     boxShadow: 'var(--shadow-brand-glow)',
     justifyContent: 'space-between',
@@ -1425,79 +1396,7 @@ const styles = {
   checkIcon: {
     flexShrink: 0,
   },
-  
-  /* Testimonial Section Styles */
-  testimonialSection: {
-    padding: '80px 0',
-    backgroundColor: 'var(--color-canvas)',
-  },
-  testimonialCard: {
-    backgroundColor: 'var(--color-testimonial-orange)',
-    color: 'var(--color-text-on-dark)',
-    borderRadius: '12px',
-    padding: '64px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '48px',
-    flexWrap: 'wrap' as const,
-  },
-  testimonialLeft: {
-    flex: '1.5 1 300px',
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'flex-start',
-    gap: '16px',
-  },
-  quoteIcon: {
-    fontFamily: 'Georgia, serif',
-    fontSize: '72px',
-    lineHeight: '0.1',
-    color: 'rgba(255, 255, 255, 0.3)',
-    marginTop: '20px',
-  },
-  testimonialQuote: {
-    fontFamily: 'var(--font-sans)',
-    fontSize: '28px',
-    fontWeight: 600,
-    lineHeight: '1.3',
-    letterSpacing: '-0.5px',
-    margin: 0,
-    padding: 0,
-    border: 'none',
-    color: 'var(--color-text-on-dark)',
-  },
-  testimonialAuthor: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '2px',
-  },
-  authorName: {
-    fontSize: '16px',
-    fontWeight: 600,
-  },
-  authorRole: {
-    fontSize: '14px',
-    color: 'var(--color-text-on-dark-muted)',
-  },
-  testimonialRight: {
-    flex: '1 1 120px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  avatarMock: {
-    width: '96px',
-    height: '96px',
-    borderRadius: '8px',
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    border: '1px solid rgba(255, 255, 255, 0.25)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '28px',
-    fontWeight: 600,
-    color: 'var(--color-text-on-dark)',
-  },
+
 
   routesSection: {
     backgroundColor: 'var(--color-surface)',

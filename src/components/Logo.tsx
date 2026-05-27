@@ -20,7 +20,7 @@ export default function Logo({
           rx="38" 
           ry="26" 
           fill="none" 
-          stroke="#18E299" 
+          stroke="#10B981" 
           strokeWidth="18" 
           transform="rotate(-35 50 50)" 
         />
