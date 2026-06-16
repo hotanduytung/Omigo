@@ -7,7 +7,7 @@ export default function Logo({
   light?: boolean;
   showDomain?: boolean;
 }) {
-  const logoSrc = showDomain ? "/logo-footer.png" : "/logo.png";
+  const logoSrc = showDomain ? "/logo-footer.svg" : "/logo.svg";
   
   return (
     <div style={{ 
