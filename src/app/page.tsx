@@ -910,8 +910,8 @@ export default function Home() {
 
       {/* Driver Registration Modal Popup */}
       {isDriverModalOpen && (
-        <div style={styles.modalOverlay}>
-          <div style={styles.modalCard} className="animate-fade-in modal-card-small">
+        <div style={styles.modalOverlay} onClick={() => setIsDriverModalOpen(false)}>
+          <div style={styles.modalCard} className="animate-fade-in modal-card-small" onClick={(e) => e.stopPropagation()}>
             <button 
               style={styles.modalCloseBtn} 
               onClick={() => setIsDriverModalOpen(false)}
@@ -1028,8 +1028,8 @@ export default function Home() {
 
       {/* Booking Confirmation Modal Popup */}
       {isConfirmModalOpen && (
-        <div style={styles.modalOverlay}>
-          <div style={styles.modalCard} className="animate-fade-in modal-card-small">
+        <div style={styles.modalOverlay} onClick={() => setIsConfirmModalOpen(false)}>
+          <div style={styles.modalCard} className="animate-fade-in modal-card-small" onClick={(e) => e.stopPropagation()}>
             <button 
               style={styles.modalCloseBtn} 
               onClick={() => setIsConfirmModalOpen(false)}
