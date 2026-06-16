@@ -398,14 +398,14 @@ export default function Home() {
                     Facebook
                   </a>
                   <span className="cta-social-separator">/</span>
-                  <a href="https://zalo.me/0961099069" target="_blank" rel="noopener noreferrer" className="cta-social-link-item zalo" title="Zalo">
+                  <a href="https://zalo.me/0868801601" target="_blank" rel="noopener noreferrer" className="cta-social-link-item zalo" title="Zalo">
                     <svg width="14" height="14" viewBox="0 0 24 24" style={{ marginRight: '4px', borderRadius: '3.5px' }}><rect width="24" height="24" rx="5" fill="#0068FF"/><text x="3.5" y="16.5" fontFamily="Arial" fontWeight="900" fontSize="8.5" fill="white">zalo</text></svg>
                     Zalo
                   </a>
                   <span className="cta-social-separator">/</span>
-                  <a href="tel:0961099069" className="cta-social-link-item phone" title="0961 099 069">
+                  <a href="tel:0868801601" className="cta-social-link-item phone" title="0868.801.601">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px' }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
-                    {language === 'vi' ? 'Gọi 0961 099 069' : 'Call 0961 099 069'}
+                    {language === 'vi' ? 'Gọi 0868.801.601' : 'Call 0868.801.601'}
                   </a>
                 </div>
               </div>
@@ -618,7 +618,7 @@ export default function Home() {
                     <label className="field-label-compact">{language === 'vi' ? 'Số điện thoại' : 'Phone Number'}</label>
                     <input 
                       type="tel" 
-                      placeholder="0961 099 069" 
+                      placeholder="0868.801.601" 
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
@@ -906,7 +906,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+      <Footer onBecomeDriverClick={() => setIsDriverModalOpen(true)} />
 
       {/* Driver Registration Modal Popup */}
       {isDriverModalOpen && (
