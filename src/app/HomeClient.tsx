@@ -353,7 +353,7 @@ export default function HomeClient({
       return;
     }
     
-    const requestedDepartureTime = `${date}T${time}:00Z`;
+    const requestedDepartureTime = `${date}T${time}:00+07:00`;
 
     setIsBookingLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/trip-requests`, {

@@ -239,7 +239,7 @@ function InlineBookingWidget({ service, route: initialRoute, title, tripConfigs,
         pickupSpecificPoint: pickup,
         dropoffSpecificPoint: dropoff,
         requestedSeatCount: quantity,
-        requestedDepartureTime: `${date}T${time}:00Z`,
+        requestedDepartureTime: `${date}T${time}:00+07:00`,
         serviceType: service,
       }),
     })
