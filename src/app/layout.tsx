@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://omigo.vn'),
-  title: 'omigo.vn - Dịch vụ đặt xe ghép, xe đi chung chuyên nghiệp',
+  title: 'Omigo.vn - Nền tảng đặt xe ghép thông minh',
   description: 'omigo.vn kết nối dịch vụ đặt xe ghép, xe đi chung, bao xe chặng ngắn và vận chuyển hàng hóa nhanh chóng, an toàn, tiết kiệm chi phí di chuyển tối đa.',
   keywords: 'xe ghép, xe đi chung, đặt xe ghép, omigo, omigo.vn, xe ghép miền trung, xe ghép đà nẵng tam kỳ, đi chung xe',
   icons: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   openGraph: {
-    title: 'omigo.vn - Dịch vụ đặt xe ghép, xe đi chung chuyên nghiệp',
+    title: 'Omigo.vn - Nền tảng đặt xe ghép thông minh',
     description: 'omigo.vn kết nối dịch vụ đặt xe ghép, xe đi chung, bao xe chặng ngắn và vận chuyển hàng hóa nhanh chóng, an toàn, tiết kiệm chi phí di chuyển tối đa.',
     images: [
       {
