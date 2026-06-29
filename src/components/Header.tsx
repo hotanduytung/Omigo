@@ -71,6 +71,9 @@ export default function Header({
           <a href="#routes" className="header-nav-link">
             {t('nav.routes')}
           </a>
+          <a href="#news" className="header-nav-link">
+            {t('nav.news')}
+          </a>
           <button 
             onClick={onBecomeDriverClick} 
             className="header-nav-link"

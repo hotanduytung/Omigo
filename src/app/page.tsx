@@ -1,6 +1,9 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -61,6 +64,56 @@ const timeOptions = Array.from({ length: 15 }, (_, i) => {
   };
 });
 
+interface NewsItem {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  imageUrl?: string;
+  date: string;
+  category: string;
+  gradientIndex?: number;
+}
+
+const premiumGradients = [
+  'linear-gradient(135deg, #0f2027, #203a43, #2c5364)', // Dark blue teal
+  'linear-gradient(135deg, #134e5e, #71b280)', // Teal to soft green
+  'linear-gradient(135deg, #1f4068, #162447, #1b1a17)', // Deep navy gold accent
+  'linear-gradient(135deg, #4b6cb7, #182848)', // Premium blue
+  'linear-gradient(135deg, #2c3e50, #000000)', // Dark slate grey
+  'linear-gradient(135deg, #11998e, #38ef7d)'  // Bright emerald green
+];
+
+const defaultNews: NewsItem[] = [
+  {
+    id: 'news-1',
+    title: 'Omigo chính thức khai trương tuyến xe ghép Đà Nẵng - Tam Kỳ',
+    excerpt: 'Dịch vụ di chuyển tiện lợi, đón trả tận nơi với mức giá siêu tiết kiệm chỉ từ 90.000đ/ghế, cam kết không trễ giờ.',
+    content: 'Chúng tôi vô cùng tự hào thông báo Omigo đã chính thức khai trương dịch vụ xe ghép và bao xe chuyên nghiệp trên tuyến đường huyết mạch Đà Nẵng - Tam Kỳ và ngược lại.\n\nVới mong muốn mang lại trải nghiệm di chuyển chất lượng cao và tiết kiệm nhất cho quý hành khách, Omigo cam kết:\n\n1. **Đón trả tận nơi**: Hành khách không cần di chuyển ra bến xe, chúng tôi hỗ trợ đón trả tại nhà hoặc các điểm hẹn thuận tiện.\n\n2. **Đúng giờ & Đúng lộ trình**: Không bắt khách dọc đường, thời gian di chuyển tối ưu chỉ khoảng 1.5 - 2 giờ.\n\n3. **Xe đời mới & An toàn**: Đội ngũ xe 4 chỗ, 7 chỗ đời mới luôn sạch sẽ, bảo dưỡng định kỳ cùng đội ngũ tài xế tận tâm, lịch sự.\n\n4. **Tiết kiệm chi phí**: Giá vé xe ghép chỉ từ 90k/ghế, giúp bạn tiết kiệm lên tới 50% so với đi taxi truyền thống.\n\nĐặt xe ngay hôm nay qua website hoặc hotline 0868.801.601 để nhận được nhiều ưu đãi hấp dẫn!',
+    category: 'Tin tức',
+    date: '2026-06-20',
+    gradientIndex: 0
+  },
+  {
+    id: 'news-2',
+    title: 'Cẩm nang đi xe ghép an toàn và thoải mái cho người mới',
+    excerpt: 'Lưu lại ngay những mẹo nhỏ cực kỳ hữu ích này để có một chuyến đi xe ghép trọn vẹn, an toàn và dễ chịu.',
+    content: 'Đi xe ghép (đi chung xe) đang trở thành xu hướng phổ biến nhờ tính tiện lợi và tiết kiệm chi phí. Tuy nhiên, để có một chuyến đi an toàn và thoải mái nhất, hành khách nên lưu ý các điểm sau:\n\n### 1. Đặt xe trước thời gian khởi hành\nNên đặt xe trước ít nhất 2 - 3 tiếng (hoặc từ ngày hôm trước đối với các chuyến đi sớm) để tài xế có thể sắp xếp lộ trình đón trả tối ưu nhất, tránh việc chờ đợi lâu.\n\n### 2. Chuẩn bị hành lý gọn gàng\nVì là chuyến xe đi chung với người khác, không gian cốp xe sẽ được chia sẻ. Bạn nên mang theo hành lý gọn gàng, nếu có đồ cồng kềnh hoặc gửi kèm hàng hóa, hãy thông báo trước cho tổng đài khi đặt xe.\n\n### 3. Xác nhận thông tin tài xế và biển số xe\nTrước khi lên xe, hãy đối chiếu thông tin tài xế, số điện thoại liên hệ và biển số xe khớp với thông tin đã được tổng đài hoặc hệ thống Omigo xác nhận để đảm bảo an toàn tuyệt đối.\n\n### 4. Giữ lịch sự trên xe\nHạn chế nói chuyện điện thoại quá to, sử dụng tai nghe khi xem phim/nghe nhạc và không mang theo thức ăn có mùi nồng để giữ không gian chung luôn dễ chịu cho tất cả hành khách.\n\nChúc bạn có những chuyến đi thật vui vẻ và thoải mái cùng Omigo!',
+    category: 'Cẩm nang',
+    date: '2026-06-15',
+    gradientIndex: 1
+  },
+  {
+    id: 'news-3',
+    title: 'Nhận ưu đãi 20% cho chuyến đi đầu tiên cùng Omigo',
+    excerpt: 'Mừng cột mốc 10.000 chuyến đi an toàn, Omigo gửi tặng mã giảm giá đặc biệt cho toàn bộ khách hàng mới trải nghiệm dịch vụ.',
+    content: 'Omigo xin gửi lời tri ân sâu sắc đến toàn bộ quý khách hàng đã đồng hành cùng chúng tôi. Để chúc mừng cột mốc 10.000 chuyến đi an toàn, Omigo triển khai chương trình ưu đãi đặc biệt dành riêng cho khách hàng mới:\n\n🎁 **Ưu đãi giảm ngay 20%** cho chuyến đi đầu tiên (tối đa 50.000đ).\n\n**Cách thức nhận ưu đãi vô cùng đơn giản:**\n- Bước 1: Truy cập trang chủ omigo.vn và điền thông tin vào form đặt chuyến.\n- Bước 2: Tại phần ghi chú hoặc khi tổng đài viên gọi điện xác nhận, hãy đọc mã **OMIGO20**.\n- Bước 3: Tận hưởng chuyến đi an toàn, thoải mái và thanh toán mức giá đã giảm trực tiếp cho tài xế.\n\n*Lưu ý: Chương trình áp dụng cho cả dịch vụ xe ghép và bao xe chặng Đà Nẵng - Tam Kỳ đến hết ngày 31/07/2026. Số lượng mã ưu đãi có hạn, hãy nhanh tay đặt chuyến ngay hôm nay!*',
+    category: 'Khuyến mãi',
+    date: '2026-06-10',
+    gradientIndex: 2
+  }
+];
+
 export default function Home() {
   const { t, language } = useLanguage();
   
@@ -82,6 +135,9 @@ export default function Home() {
   const [isBookingLoading, setIsBookingLoading] = useState(false);
   const [isDriverLoading, setIsDriverLoading] = useState(false);
   const [isSuggestLoading, setIsSuggestLoading] = useState(false);
+
+  // News states
+  const [newsList, setNewsList] = useState<NewsItem[]>([]);
 
   const getMatchedConfig = () => {
     const isTamKyToDaNang = route === 'tam-ky-da-nang';
@@ -111,6 +167,31 @@ export default function Home() {
         }
       })
       .catch(err => console.error("Error fetching trip configs:", err));
+
+    // Load news from API
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/news`)
+      .then(res => res.json())
+      .then(res => {
+        if (res?.data && Array.isArray(res.data)) {
+          const mappedNews = res.data.map((item: any) => ({
+            id: item._id || item.id,
+            title: item.title,
+            excerpt: item.excerpt,
+            content: item.content,
+            imageUrl: item.imageUrl,
+            gradientIndex: item.gradientIndex,
+            date: item.date,
+            category: item.category,
+          }));
+          setNewsList(mappedNews);
+        } else {
+          setNewsList(defaultNews);
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching news:", err);
+        setNewsList(defaultNews);
+      });
   }, []);
 
   useEffect(() => {
@@ -392,26 +473,31 @@ export default function Home() {
                 <span className="cta-social-text-or">
                   {language === 'vi' ? '— hoặc đặt qua' : '— or book via'}
                 </span>
-                <div className="cta-social-links">
-                  <a href="https://www.facebook.com/omigo.vn" target="_blank" rel="noopener noreferrer" className="cta-social-link-item fb" title="Facebook">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#1877F2" style={{ marginRight: '4px' }}><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    Facebook
-                  </a>
-                  <span className="cta-social-separator">/</span>
-                  <a href="https://zalo.me/0868801601" target="_blank" rel="noopener noreferrer" className="cta-social-link-item zalo" title="Zalo">
-                    <svg width="14" height="14" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '4px', borderRadius: '3px' }}>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M22.782 0.166016H27.199C33.2653 0.166016 36.8103 1.05701 39.9572 2.74421C43.1041 4.4314 45.5875 6.89585 47.2557 10.0428C48.9429 13.1897 49.8339 16.7347 49.8339 22.801V27.1991C49.8339 33.2654 48.9429 36.8104 47.2557 39.9573C45.5685 43.1042 43.1041 45.5877 39.9572 47.2559C36.8103 48.9431 33.2653 49.8341 27.199 49.8341H22.8009C16.7346 49.8341 13.1896 48.9431 10.0427 47.2559C6.89583 45.5687 4.41243 43.1042 2.7442 39.9573C1.057 36.8104 0.166016 33.2654 0.166016 27.1991V22.801C0.166016 16.7347 1.057 13.1897 2.7442 10.0428C4.43139 6.89585 6.89583 4.41245 10.0427 2.74421C13.1707 1.05701 16.7346 0.166016 22.782 0.166016Z" fill="#0068FF"/>
-                      <path opacity="0.12" fillRule="evenodd" clipRule="evenodd" d="M49.8336 26.4736V27.1994C49.8336 33.2657 48.9427 36.8107 47.2555 39.9576C45.5683 43.1045 43.1038 45.5879 39.9569 47.2562C36.81 48.9434 33.265 49.8344 27.1987 49.8344H22.8007C17.8369 49.8344 14.5612 49.2378 11.8104 48.0966L7.27539 43.4267L49.8336 26.4736Z" fill="#001A33"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M7.779 43.5892C10.1019 43.846 13.0061 43.1836 15.0682 42.1825C24.0225 47.1318 38.0197 46.8954 46.4923 41.4732C46.8209 40.9803 47.1279 40.4677 47.4128 39.9363C49.1062 36.7779 50.0004 33.22 50.0004 27.1316V22.7175C50.0004 16.629 49.1062 13.0711 47.4128 9.91273C45.7385 6.75436 43.2461 4.28093 40.0877 2.58758C36.9293 0.894239 33.3714 0 27.283 0H22.8499C17.6644 0 14.2982 0.652754 11.4699 1.89893C11.3153 2.03737 11.1636 2.17818 11.0151 2.32135C2.71734 10.3203 2.08658 27.6593 9.12279 37.0782C9.13064 37.0921 9.13933 37.1061 9.14889 37.1203C10.2334 38.7185 9.18694 41.5154 7.55068 43.1516C7.28431 43.399 7.37944 43.5512 7.779 43.5892Z" fill="white"/>
-                      <path d="M20.5632 17H10.8382V19.0853H17.5869L10.9329 27.3317C10.7244 27.635 10.5728 27.9194 10.5728 28.5639V29.0947H19.748C20.203 29.0947 20.5822 28.7156 20.5822 28.2606V27.1421H13.4922L19.748 19.2938C19.8428 19.1801 20.0134 18.9716 20.0893 18.8768L20.1272 18.8199C20.4874 18.2891 20.5632 17.8341 20.5632 17.2844V17Z" fill="#0068FF"/>
-                      <path d="M32.9416 29.0947H34.3255V17H32.2402V28.3933C32.2402 28.7725 32.5435 29.0947 32.9416 29.0947Z" fill="#0068FF"/>
-                      <path d="M25.814 19.6924C23.1979 19.6924 21.0747 21.8156 21.0747 24.4317C21.0747 27.0478 23.1979 29.171 25.814 29.171C28.4301 29.171 30.5533 27.0478 30.5533 24.4317C30.5723 21.8156 28.4491 19.6924 25.814 19.6924ZM25.814 27.2184C24.2785 27.2184 23.0273 25.9672 23.0273 24.4317C23.0273 22.8962 24.2785 21.645 25.814 21.645C27.3495 21.645 28.6007 22.8962 28.6007 24.4317C28.6007 25.9672 27.3685 27.2184 25.814 27.2184Z" fill="#0068FF"/>
-                      <path d="M40.4867 19.6162C37.8516 19.6162 35.7095 21.7584 35.7095 24.3934C35.7095 27.0285 37.8516 29.1707 40.4867 29.1707C43.1217 29.1707 45.2639 27.0285 45.2639 24.3934C45.2639 21.7584 43.1217 19.6162 40.4867 19.6162ZM40.4867 27.2181C38.9322 27.2181 37.681 25.9669 37.681 24.4124C37.681 22.8579 38.9322 21.6067 40.4867 21.6067C42.0412 21.6067 43.2924 22.8579 43.2924 24.4124C43.2924 25.9669 42.0412 27.2181 40.4867 27.2181Z" fill="#0068FF"/>
-                      <path d="M29.4562 29.0944H30.5747V19.957H28.6221V28.2793C28.6221 28.7153 29.0012 29.0944 29.4562 29.0944Z" fill="#0068FF"/>
+                <div className="cta-social-links" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <a href="https://www.facebook.com/omigo.vn" target="_blank" rel="noopener noreferrer" className="footer-social-icon-btn" title="Facebook">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                     </svg>
-                    Zalo
                   </a>
-                  <span className="cta-social-separator">/</span>
+                  <a href="https://zalo.me/0868801601" target="_blank" rel="noopener noreferrer" className="footer-social-icon-btn" title="Zalo">
+                    <svg width="24" height="24" viewBox="8.5 6 39 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.5632 17H10.8382V19.0853H17.5869L10.9329 27.3317C10.7244 27.635 10.5728 27.9194 10.5728 28.5639V29.0947H19.748C20.203 29.0947 20.5822 28.7156 20.5822 28.2606V27.1421H13.4922L19.748 19.2938C19.8428 19.1801 20.0134 18.9716 20.0893 18.8768L20.1272 18.8199C20.4874 18.2891 20.5632 17.8341 20.5632 17.2844V17Z" />
+                      <path d="M32.9416 29.0947H34.3255V17H32.2402V28.3933C32.2402 28.7725 32.5435 29.0947 32.9416 29.0947Z" />
+                      <path d="M25.814 19.6924C23.1979 19.6924 21.0747 21.8156 21.0747 24.4317C21.0747 27.0478 23.1979 29.171 25.814 29.171C28.4301 29.171 30.5533 27.0478 30.5533 24.4317C30.5723 21.8156 28.4491 19.6924 25.814 19.6924ZM25.814 27.2184C24.2785 27.2184 23.0273 25.9672 23.0273 24.4317C23.0273 22.8962 24.2785 21.645 25.814 21.645C27.3495 21.645 28.6007 22.8962 28.6007 24.4317C28.6007 25.9672 27.3685 27.2184 25.814 27.2184Z" />
+                      <path d="M40.4867 19.6162C37.8516 19.6162 35.7095 21.7584 35.7095 24.3934C35.7095 27.0285 37.8516 29.1707 40.4867 29.1707C43.1217 29.1707 45.2639 27.0285 45.2639 24.3934C45.2639 21.7584 43.1217 19.6162 40.4867 19.6162ZM40.4867 27.2181C38.9322 27.2181 37.681 25.9669 37.681 24.4124C37.681 22.8579 38.9322 21.6067 40.4867 21.6067C42.0412 21.6067 43.2924 22.8579 43.2924 24.4124C43.2924 25.9669 42.0412 27.2181 40.4867 27.2181Z" />
+                      <path d="M29.4562 29.0944H30.5747V19.957H28.6221V28.2793C28.6221 28.7153 29.0012 29.0944 29.4562 29.0944Z" />
+                    </svg>
+                  </a>
+                  <a href="https://www.instagram.com/omigo_vn/" target="_blank" rel="noopener noreferrer" className="footer-social-icon-btn" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                  </a>
+                  
+                  <span style={{ margin: '0 4px', color: 'var(--color-text-steel)', opacity: 0.5 }}>|</span>
+                  
                   <a href="tel:0868801601" className="cta-social-link-item phone" title="0868.801.601">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px' }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.14 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17l.92-.08z"/></svg>
                     {language === 'vi' ? 'Gọi 0868.801.601' : 'Call 0868.801.601'}
@@ -649,9 +735,16 @@ export default function Home() {
       {/* Services/Pricing Section */}
       <section id="services" style={styles.servicesSection}>
         <div className="container">
-          <div style={styles.sectionHeader}>
-            <span style={styles.sectionBadge}>{t('pricing.badge')}</span>
-            <h2 style={styles.sectionTitle}>{language === 'vi' ? 'Dịch vụ của chúng tôi' : 'Our Services'}</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '48px', alignItems: 'center', textAlign: 'center' }}>
+            <span className="suggest-badge" style={{ textTransform: 'uppercase' }}>
+              {t('pricing.badge')}
+            </span>
+            <h2 style={{ fontSize: '32px', fontWeight: 700, margin: 0, color: 'var(--color-text-ink)', letterSpacing: '-0.5px' }}>
+              {language === 'vi' ? 'Dịch vụ của chúng tôi' : 'Our Services'}
+            </h2>
+            <p style={{ fontSize: '16px', color: 'var(--color-text-slate)', margin: 0, maxWidth: '600px', lineHeight: '1.5' }}>
+              {t('pricing.heading')}
+            </p>
           </div>
           
           <div className="pricing-grid-flex" style={styles.pricingGrid}>
@@ -693,7 +786,7 @@ export default function Home() {
                 </div>
                 <button 
                   onClick={() => handleSelectService('xe-ghep')} 
-                  className="btn-secondary" 
+                  className="btn-primary" 
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   {t('pricing.shared.btn')}
@@ -789,7 +882,7 @@ export default function Home() {
                 </div>
                 <button 
                   onClick={() => handleSelectService('gui-hang')} 
-                  className="btn-secondary" 
+                  className="btn-primary" 
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   {t('pricing.package.btn')}
@@ -912,6 +1005,79 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* News Section */}
+      <section className="news-section" id="news">
+        <div className="container">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '40px', alignItems: 'center', textAlign: 'center' }}>
+            <span className="suggest-badge" style={{ textTransform: 'uppercase' }}>
+              {t('news.badge')}
+            </span>
+            <h2 style={{ fontSize: '32px', fontWeight: 700, margin: 0, color: 'var(--color-text-ink)', letterSpacing: '-0.5px' }}>
+              {t('news.title')}
+            </h2>
+            <p style={{ fontSize: '16px', color: 'var(--color-text-slate)', margin: 0, maxWidth: '600px', lineHeight: '1.5' }}>
+              {t('news.subtitle')}
+            </p>
+          </div>
+
+          {newsList.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '40px', color: 'var(--color-text-steel)', fontSize: '15px' }}>
+              {t('news.noNews')}
+            </div>
+          ) : (
+            <div className="news-grid">
+              {newsList.map((item) => {
+                const bgGradient = premiumGradients[item.gradientIndex ?? 0] || premiumGradients[0];
+                return (
+                  <Link 
+                    href={`/news/${item.id}`}
+                    key={item.id} 
+                    className="news-card animate-fade-in"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div className="news-card-image-wrapper">
+                      <span className="news-card-badge">{item.category}</span>
+                      {item.imageUrl ? (
+                        <img src={item.imageUrl} alt={item.title} className="news-card-image" />
+                      ) : (
+                        <div className="news-card-gradient" style={{ background: bgGradient }}>
+                          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div className="news-card-content">
+                      <div className="news-card-date">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                          <line x1="16" y1="2" x2="16" y2="6" />
+                          <line x1="8" y1="2" x2="8" y2="6" />
+                          <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        {item.date}
+                      </div>
+                      <h3 className="news-card-title">{item.title}</h3>
+                      <p className="news-card-excerpt">{item.excerpt}</p>
+                      <span className="news-card-link">
+                        {t('news.readMore')}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+
+
         </div>
       </section>
 
@@ -1160,6 +1326,8 @@ export default function Home() {
           </div>
         </div>
       )}
+
+
     </div>
   );
 }

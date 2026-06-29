@@ -1200,7 +1200,549 @@ p {
   border-color: rgba(13, 13, 13, 0.15);
 }
 
+.footer-social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-social-icon-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-color: #cbd5e1;
+  color: #000000;
+}
+
 /* Unified strip icon button hover */
 .strip-icon-hover:hover {
   background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ==========================================================================
+   News Section & Admin Panel Styles
+   ========================================================================== */
+
+.news-section {
+  padding: 80px 0;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-hairline-soft);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+@media (min-width: 768px) {
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .news-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+}
+
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(13, 13, 13, 0.15);
+}
+
+.news-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--color-surface-soft);
+}
+
+.news-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-card-image {
+  transform: scale(1.05);
+}
+
+.news-card-gradient {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-card-gradient {
+  transform: scale(1.05);
+}
+
+.news-card-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.news-card-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-ink);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.news-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex-grow: 1;
+}
+
+.news-card-date {
+  font-size: 12px;
+  color: var(--color-text-steel);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.news-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-ink);
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 50px;
+}
+
+.news-card-excerpt {
+  font-size: 14px;
+  color: var(--color-text-slate);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+  height: 66px;
+}
+
+.news-card-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-brand-green-deep);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s ease;
+}
+
+.news-card:hover .news-card-link {
+  gap: 8px;
+}
+
+/* Modal News Styles */
+.news-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 20px;
+}
+
+.news-modal-card {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.news-modal-header-image {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-surface-soft);
+  transition: height 0.2s ease;
+}
+
+.news-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(15, 23, 42, 0.45);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.news-modal-close:hover {
+  background-color: rgba(15, 23, 42, 0.75);
+  transform: scale(1.05);
+}
+
+.news-modal-body {
+  padding: 40px 48px;
+  overflow-y: auto;
+  flex-grow: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.15) transparent;
+}
+
+.news-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.news-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.news-modal-body::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 23, 42, 0.15);
+  border-radius: 10px;
+}
+
+.news-modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.news-modal-badge {
+  background-color: rgba(24, 226, 153, 0.12);
+  color: #12b77a;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.news-modal-date {
+  font-size: 13px;
+  color: var(--color-text-steel);
+  font-weight: 600;
+}
+
+.news-modal-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text-ink);
+  line-height: 1.35;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.news-modal-text-content {
+  font-size: 16.5px;
+  color: #334155; /* Softer gray for optimized reading strain */
+  line-height: 1.85; /* Medium article spacing */
+}
+
+.news-modal-text-content p {
+  margin-bottom: 24px;
+}
+
+.news-modal-text-content strong {
+  color: var(--color-text-ink);
+  font-weight: 700;
+}
+
+.news-modal-text-content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-ink);
+  margin-top: 32px;
+  margin-bottom: 14px;
+}
+
+/* Video Thumbnail Card Hover Animations */
+.video-thumbnail-card:hover .play-button-circle {
+  transform: scale(1.1);
+}
+.video-thumbnail-card:hover > div:first-of-type {
+  background-color: rgba(15, 23, 42, 0.4) !important;
+}
+
+/* Admin Dashboard Styles */
+.admin-page {
+  background-color: var(--color-surface);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.admin-header {
+  background-color: var(--color-canvas);
+  border-bottom: 1px solid var(--color-hairline);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-btn {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-btn-primary {
+  background-color: var(--color-text-ink);
+  color: white;
+}
+
+.admin-btn-primary:hover {
+  background-color: #232d3d;
+  transform: translateY(-1px);
+}
+
+.admin-btn-secondary {
+  background-color: var(--color-canvas);
+  color: var(--color-text-slate);
+  border-color: var(--color-hairline);
+}
+
+.admin-btn-secondary:hover {
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-ink);
+}
+
+.admin-btn-danger {
+  background-color: #fee2e2;
+  color: #ef4444;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+.admin-btn-danger:hover {
+  background-color: #fecaca;
+}
+
+.admin-card {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 32px;
+}
+
+.admin-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--color-text-ink);
+  border-bottom: 1px solid var(--color-hairline-soft);
+  padding-bottom: 12px;
+}
+
+.admin-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+@media (min-width: 1024px) {
+  .admin-grid-layout {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.admin-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-slate);
+}
+
+.admin-input, .admin-textarea, .admin-select {
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-hairline);
+  background-color: var(--color-surface);
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.admin-input:focus, .admin-textarea:focus, .admin-select:focus {
+  border-color: var(--color-text-ink);
+  background-color: var(--color-canvas);
+  box-shadow: 0 0 0 3px rgba(13, 13, 13, 0.05);
+}
+
+.admin-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.admin-gradient-picker {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.admin-gradient-option {
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.admin-gradient-option:hover {
+  transform: scale(1.05);
+}
+
+.admin-gradient-option.active {
+  border-color: var(--color-text-ink);
+  transform: scale(1.05);
+}
+
+.admin-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.admin-list-table th, .admin-list-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-hairline-soft);
+}
+
+.admin-list-table th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-steel);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--color-surface-soft);
+}
+
+.admin-list-table td {
+  font-size: 14px;
+  color: var(--color-text-slate);
+}
+
+.admin-list-table tr:hover td {
+  background-color: var(--color-surface);
+}
+
+.admin-list-title-cell {
+  font-weight: 600;
+  color: var(--color-text-ink);
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
