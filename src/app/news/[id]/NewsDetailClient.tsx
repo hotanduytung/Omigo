@@ -33,6 +33,7 @@ interface NewsItem {
   gradientIndex?: number;
   date: string;
   category: string;
+  slug?: string;
 }
 
 const defaultNews: NewsItem[] = [

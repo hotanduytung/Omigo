@@ -82,6 +82,7 @@ interface NewsItem {
   date: string;
   category: string;
   gradientIndex?: number;
+  slug?: string;
 }
 
 const premiumGradients = [
@@ -1066,13 +1067,25 @@ export default function HomeClient({
                 const bgGradient = premiumGradients[item.gradientIndex ?? 0] || premiumGradients[0];
                 return (
                   <Link 
-                    href={language === 'vi' ? `/tin-tuc/${item.id}` : `/news/${item.id}`}
+                    href={language === 'vi' ? `/tin-tuc/${item.slug || item.id}` : `/news/${item.slug || item.id}`}
                     key={item.id} 
                     className="news-card animate-fade-in"
                     style={{ textDecoration: 'none' }}
                   >
+                    <div className="news-card-image-wrapper">
+                      <span className="news-card-badge">{item.category}</span>
+                      {item.imageUrl ? (
+                        <img src={getImageUrl(item.imageUrl)} alt={item.title} className="news-card-image" />
+                      ) : (
+                        <div className="news-card-gradient" style={{ background: bgGradient }}>
+                          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
                     <div className="news-card-content">
-                      <span className="news-card-badge-inline">{item.category}</span>
                       <div className="news-card-date">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
