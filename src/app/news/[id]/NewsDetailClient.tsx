@@ -418,10 +418,13 @@ export default function NewsDetailClient({ id, defaultLang }: { id: string; defa
   const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
-    if (defaultLang && language !== defaultLang) {
-      setLanguage(defaultLang);
+    if (defaultLang) {
+      const saved = localStorage.getItem('omigo-lang');
+      if (!saved && language !== defaultLang) {
+        setLanguage(defaultLang);
+      }
     }
-  }, [defaultLang, language, setLanguage]);
+  }, [defaultLang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [news, setNews] = useState<NewsItem | null>(null);
   const [allNews, setAllNews] = useState<NewsItem[]>([]);

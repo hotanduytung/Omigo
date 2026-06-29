@@ -198,11 +198,31 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('vi');
+  const [language, setLanguageState] = useState<Language>('vi');
+  const [mounted, setMounted] = useState(false);
+
+  // On mount, read saved language from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('omigo-lang') as Language | null;
+    if (saved === 'vi' || saved === 'en') {
+      setLanguageState(saved);
+    }
+    setMounted(true);
+  }, []);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('omigo-lang', lang);
+  };
 
   const t = (key: string) => {
     return translations[language][key] || key;
   };
+
+  // Don't render children until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>

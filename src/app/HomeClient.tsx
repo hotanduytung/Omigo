@@ -137,10 +137,14 @@ export default function HomeClient({
   const { t, language, setLanguage } = useLanguage();
 
   useEffect(() => {
-    if (defaultLang && language !== defaultLang) {
-      setLanguage(defaultLang);
+    if (defaultLang) {
+      // Only apply defaultLang if user hasn't manually chosen a language
+      const saved = localStorage.getItem('omigo-lang');
+      if (!saved && language !== defaultLang) {
+        setLanguage(defaultLang);
+      }
     }
-  }, [defaultLang, language, setLanguage]);
+  }, [defaultLang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (initialSection) {
