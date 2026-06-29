@@ -99,7 +99,8 @@ const defaultNews: NewsItem[] = [
     id: 'news-1',
     title: 'Omigo chính thức khai trương tuyến xe ghép Đà Nẵng - Tam Kỳ',
     excerpt: 'Dịch vụ di chuyển tiện lợi, đón trả tận nơi với mức giá siêu tiết kiệm chỉ từ 90.000đ/ghế, cam kết không trễ giờ.',
-    content: 'Chúng tôi vô cùng tự hào thông báo Omigo đã chính thức khai trương dịch vụ xe ghép và bao xe chuyên nghiệp trên tuyến đường huyết mạch Đà Nẵng - Tam Kỳ và ngược lại.\n\nVới mong muốn mang lại trải nghiệm di chuyển chất lượng cao và tiết kiệm nhất cho quý hành khách, Omigo cam kết:\n\n1. **Đón trả tận nơi**: Hành khách không cần di chuyển ra bến xe, chúng tôi hỗ trợ đón trả tại nhà hoặc các điểm hẹn thuận tiện.\n\n2. **Đúng giờ & Đúng lộ trình**: Không bắt khách dọc đường, thời gian di chuyển tối ưu chỉ khoảng 1.5 - 2 giờ.\n\n3. **Xe đời mới & An toàn**: Đội ngũ xe 4 chỗ, 7 chỗ đời mới luôn sạch sẽ, bảo dưỡng định kỳ cùng đội ngũ tài xế tận tâm, lịch sự.\n\n4. **Tiết kiệm chi phí**: Giá vé xe ghép chỉ từ 90k/ghế, giúp bạn tiết kiệm lên tới 50% so với đi taxi truyền thống.\n\nĐặt xe ngay hôm nay qua website hoặc hotline 0868.801.601 để nhận được nhiều ưu đãi hấp dẫn!',
+    content: '',
+    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
     category: 'Tin tức',
     date: '2026-06-20',
     gradientIndex: 0
@@ -108,7 +109,8 @@ const defaultNews: NewsItem[] = [
     id: 'news-2',
     title: 'Cẩm nang đi xe ghép an toàn và thoải mái cho người mới',
     excerpt: 'Lưu lại ngay những mẹo nhỏ cực kỳ hữu ích này để có một chuyến đi xe ghép trọn vẹn, an toàn và dễ chịu.',
-    content: 'Đi xe ghép (đi chung xe) đang trở thành xu hướng phổ biến nhờ tính tiện lợi và tiết kiệm chi phí. Tuy nhiên, để có một chuyến đi an toàn và thoải mái nhất, hành khách nên lưu ý các điểm sau:\n\n### 1. Đặt xe trước thời gian khởi hành\nNên đặt xe trước ít nhất 2 - 3 tiếng (hoặc từ ngày hôm trước đối với các chuyến đi sớm) để tài xế có thể sắp xếp lộ trình đón trả tối ưu nhất, tránh việc chờ đợi lâu.\n\n### 2. Chuẩn bị hành lý gọn gàng\nVì là chuyến xe đi chung với người khác, không gian cốp xe sẽ được chia sẻ. Bạn nên mang theo hành lý gọn gàng, nếu có đồ cồng kềnh hoặc gửi kèm hàng hóa, hãy thông báo trước cho tổng đài khi đặt xe.\n\n### 3. Xác nhận thông tin tài xế và biển số xe\nTrước khi lên xe, hãy đối chiếu thông tin tài xế, số điện thoại liên hệ và biển số xe khớp với thông tin đã được tổng đài hoặc hệ thống Omigo xác nhận để đảm bảo an toàn tuyệt đối.\n\n### 4. Giữ lịch sự trên xe\nHạn chế nói chuyện điện thoại quá to, sử dụng tai nghe khi xem phim/nghe nhạc và không mang theo thức ăn có mùi nồng để giữ không gian chung luôn dễ chịu cho tất cả hành khách.\n\nChúc bạn có những chuyến đi thật vui vẻ và thoải mái cùng Omigo!',
+    content: '',
+    imageUrl: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
     category: 'Cẩm nang',
     date: '2026-06-15',
     gradientIndex: 1
@@ -117,7 +119,8 @@ const defaultNews: NewsItem[] = [
     id: 'news-3',
     title: 'Nhận ưu đãi 20% cho chuyến đi đầu tiên cùng Omigo',
     excerpt: 'Mừng cột mốc 10.000 chuyến đi an toàn, Omigo gửi tặng mã giảm giá đặc biệt cho toàn bộ khách hàng mới trải nghiệm dịch vụ.',
-    content: 'Omigo xin gửi lời tri ân sâu sắc đến toàn bộ quý khách hàng đã đồng hành cùng chúng tôi. Để chúc mừng cột mốc 10.000 chuyến đi an toàn, Omigo triển khai chương trình ưu đãi đặc biệt dành riêng cho khách hàng mới:\n\n🎁 **Ưu đãi giảm ngay 20%** cho chuyến đi đầu tiên (tối đa 50.000đ).\n\n**Cách thức nhận ưu đãi vô cùng đơn giản:**\n- Bước 1: Truy cập trang chủ omigo.vn và điền thông tin vào form đặt chuyến.\n- Bước 2: Tại phần ghi chú hoặc khi tổng đài viên gọi điện xác nhận, hãy đọc mã **OMIGO20**.\n- Bước 3: Tận hưởng chuyến đi an toàn, thoải mái và thanh toán mức giá đã giảm trực tiếp cho tài xế.\n\n*Lưu ý: Chương trình áp dụng cho cả dịch vụ xe ghép và bao xe chặng Đà Nẵng - Tam Kỳ đến hết ngày 31/07/2026. Số lượng mã ưu đãi có hạn, hãy nhanh tay đặt chuyến ngay hôm nay!*',
+    content: '',
+    imageUrl: 'https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&w=800&q=80',
     category: 'Khuyến mãi',
     date: '2026-06-10',
     gradientIndex: 2
@@ -206,16 +209,19 @@ export default function HomeClient({
     fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/v1/public/news`)
       .then(res => res.json())
       .then(res => {
-        if (res?.data && Array.isArray(res.data)) {
-          const mappedNews = res.data.map((item: any) => ({
+        // API returns { data: { items: [...], meta: {...} } } for list endpoints
+        const items = res?.data?.items ?? (Array.isArray(res?.data) ? res.data : null);
+        if (items && Array.isArray(items) && items.length > 0) {
+          const mappedNews = items.map((item: any) => ({
             id: item._id || item.id,
             title: item.title,
             excerpt: item.excerpt,
             content: item.content,
-            imageUrl: item.imageUrl,
-            gradientIndex: item.gradientIndex,
+            imageUrl: item.imageUrl || '',
+            gradientIndex: item.gradientIndex ?? 0,
             date: item.date,
             category: item.category,
+            slug: item.slug || '',
           }));
           setNewsList(mappedNews);
         } else {
