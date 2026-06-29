@@ -13,6 +13,19 @@ export default function Header({
   onBookNowClick?: () => void;
 }) {
   const { language, setLanguage, t } = useLanguage();
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLanguageChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     setLanguage(language === 'vi' ? 'en' : 'vi');
@@ -38,7 +51,14 @@ export default function Header({
   };
 
   return (
-    <header style={styles.header}>
+    <header style={{
+      ...styles.header,
+      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.85)' : 'transparent',
+      backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+      WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
+      borderBottom: isScrolled ? '1px solid var(--color-hairline-soft)' : '1px solid transparent',
+      padding: isScrolled ? '12px 0' : '20px 0',
+    }}>
       <div style={styles.container}>
         <Link href="/" style={styles.logoLink} onClick={handleLogoClick}>
           <Logo />
@@ -50,6 +70,9 @@ export default function Header({
           </a>
           <a href="#routes" className="header-nav-link">
             {t('nav.routes')}
+          </a>
+          <a href="#news" className="header-nav-link">
+            {t('nav.news')}
           </a>
           <button 
             onClick={onBecomeDriverClick} 
@@ -83,14 +106,12 @@ export default function Header({
 
 const styles = {
   header: {
-    position: 'sticky' as const,
+    position: 'fixed' as const,
     top: 0,
+    left: 0,
+    right: 0,
     zIndex: 100,
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    backdropFilter: 'blur(16px)',
-    WebkitBackdropFilter: 'blur(16px)',
-    borderBottom: '1px solid var(--color-hairline-soft)',
-    padding: '14px 0',
+    transition: 'background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, padding 0.3s ease',
   },
   container: {
     display: 'flex',
