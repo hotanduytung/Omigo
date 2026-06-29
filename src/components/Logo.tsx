@@ -19,7 +19,7 @@ export default function Logo({
         src={logoSrc} 
         alt="Omigo Logo" 
         style={{ 
-          height: showDomain ? '54px' : '32px', 
+          height: showDomain ? '54px' : '48px', 
           width: 'auto', 
           display: 'block' 
         }} 

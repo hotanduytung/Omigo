@@ -8,6 +8,15 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 
+const getImageUrl = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  return `${baseUrl.replace(/\/$/, '')}${url.startsWith('/') ? '' : '/'}${url}`;
+};
+
 interface TimeSlot {
   _id: string;
   departureTime: string;
@@ -1033,7 +1042,7 @@ export default function Home() {
                 const bgGradient = premiumGradients[item.gradientIndex ?? 0] || premiumGradients[0];
                 return (
                   <Link 
-                    href={`/news/${item.id}`}
+                    href={language === 'vi' ? `/tin-tuc/${item.id}` : `/news/${item.id}`}
                     key={item.id} 
                     className="news-card animate-fade-in"
                     style={{ textDecoration: 'none' }}
@@ -1041,7 +1050,7 @@ export default function Home() {
                     <div className="news-card-image-wrapper">
                       <span className="news-card-badge">{item.category}</span>
                       {item.imageUrl ? (
-                        <img src={item.imageUrl} alt={item.title} className="news-card-image" />
+                        <img src={getImageUrl(item.imageUrl)} alt={item.title} className="news-card-image" />
                       ) : (
                         <div className="news-card-gradient" style={{ background: bgGradient }}>
                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

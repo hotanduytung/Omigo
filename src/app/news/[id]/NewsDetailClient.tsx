@@ -7,6 +7,15 @@ import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+const getImageUrl = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
+  }
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  return `${baseUrl.replace(/\/$/, '')}${url.startsWith('/') ? '' : '/'}${url}`;
+};
+
 const premiumGradients = [
   'linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%)',
   'linear-gradient(135deg, #4E65FF 0%, #92EFFD 100%)',
@@ -403,9 +412,15 @@ function InlineBookingWidget({ service, route: initialRoute, title, tripConfigs,
   );
 }
 
-export default function NewsDetailClient({ id }: { id: string }) {
+export default function NewsDetailClient({ id, defaultLang }: { id: string; defaultLang?: 'vi' | 'en' }) {
   const router = useRouter();
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+
+  useEffect(() => {
+    if (defaultLang && language !== defaultLang) {
+      setLanguage(defaultLang);
+    }
+  }, [defaultLang, language, setLanguage]);
 
   const [news, setNews] = useState<NewsItem | null>(null);
   const [allNews, setAllNews] = useState<NewsItem[]>([]);
@@ -613,31 +628,11 @@ export default function NewsDetailClient({ id }: { id: string }) {
             
             <div style={styles.authorMetaRow}>
               <div style={styles.authorLeft}>
-                <div style={styles.avatarCircle}>
-                  {news.category === 'Cẩm nang' ? '✈️' : news.category === 'Khuyến mãi' ? '🎁' : '📰'}
-                </div>
                 <div style={styles.authorText}>
-                  <span style={styles.authorName}>Ban biên tập Omigo</span>
                   <div style={styles.authorSubtext}>
                     <span>{news.date}</span>
-                    <span style={styles.dotSeparator}>•</span>
-                    <span>{language === 'vi' ? '3 phút đọc' : '3 min read'}</span>
                   </div>
                 </div>
-              </div>
-              
-              <div style={styles.shareButtons}>
-                <button onClick={handleShareFacebook} title="Chia sẻ Facebook" style={styles.shareButton}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </button>
-                <button onClick={handleCopyLink} title="Sao chép liên kết" style={styles.shareButton}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
@@ -656,7 +651,7 @@ export default function NewsDetailClient({ id }: { id: string }) {
           >
             {news.imageUrl && (
               <img 
-                src={news.imageUrl} 
+                src={getImageUrl(news.imageUrl)} 
                 alt={news.title} 
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
