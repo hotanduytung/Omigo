@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import Logo from './Logo';
 
@@ -49,8 +50,8 @@ export default function Footer({
         <div style={styles.colLinks}>
           <h4 style={styles.colTitle}>{language === 'vi' ? 'LIÊN KẾT' : 'LINKS'}</h4>
           <ul style={styles.linkList}>
-            <li><a href="#services" className="footer-link-item">{language === 'vi' ? 'Dịch vụ' : 'Services'}</a></li>
-            <li><a href="#routes" className="footer-link-item">{language === 'vi' ? 'Đóng góp lộ trình' : 'Suggest Route'}</a></li>
+            <li><Link href={language === 'vi' ? '/dich-vu' : '/services'} className="footer-link-item">{language === 'vi' ? 'Dịch vụ' : 'Services'}</Link></li>
+            <li><Link href={language === 'vi' ? '/lo-trinh' : '/suggest-route'} className="footer-link-item">{language === 'vi' ? 'Đóng góp lộ trình' : 'Suggest Route'}</Link></li>
             <li>
               <button 
                 onClick={onBecomeDriverClick} 

@@ -609,7 +609,7 @@ export default function NewsDetailClient({ id, defaultLang }: { id: string; defa
         <article className="container" style={styles.articleWrapper}>
           {/* Back Navigation */}
           <div style={styles.backNavigation}>
-            <Link href="/#news" style={styles.backLink}>
+            <Link href={language === 'vi' ? '/tin-tuc' : '/news'} style={styles.backLink}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>

@@ -65,15 +65,15 @@ export default function Header({
         </Link>
         
         <nav className="nav-menu" style={styles.nav}>
-          <a href="#services" className="header-nav-link">
+          <Link href={language === 'vi' ? '/dich-vu' : '/services'} className="header-nav-link">
             {t('nav.services')}
-          </a>
-          <a href="#routes" className="header-nav-link">
+          </Link>
+          <Link href={language === 'vi' ? '/lo-trinh' : '/suggest-route'} className="header-nav-link">
             {t('nav.routes')}
-          </a>
-          <a href="#news" className="header-nav-link">
+          </Link>
+          <Link href={language === 'vi' ? '/tin-tuc' : '/news'} className="header-nav-link">
             {t('nav.news')}
-          </a>
+          </Link>
           <button 
             onClick={onBecomeDriverClick} 
             className="header-nav-link"

@@ -1,8 +1,8 @@
 import React from "react";
-import HomeClient from "./HomeClient";
+import HomeClient from "../HomeClient";
 
 export const dynamic = "force-dynamic";
 
 export default function Page() {
-  return <HomeClient />;
+  return <HomeClient initialSection="news" defaultLang="vi" />;
 }
